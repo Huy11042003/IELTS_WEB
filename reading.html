@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IELTS Practice</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="left-header">
+    <select id="pdfSelector">
+      <option value="">Select Test</option>
+    </select>
+  </div>
+
+  <div class="timer" id="timer">--:--</div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- LEFT: PDF -->
+  <div class="left-panel">
+    <iframe id="pdfViewer"></iframe>
+  </div>
+
+  <!-- RIGHT: QUESTIONS -->
+  <div class="right-panel">
+    <div class="instruction-box">
+      Questions panel
+    </div>
+
+    <div id="questionArea"></div>
+  </div>
+
+</div>
+
+<div class="footer-nav" id="questionNav"></div>
+
+<script src="script.js"></script>
+</body>
+</html>

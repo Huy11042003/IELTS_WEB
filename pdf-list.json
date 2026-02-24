@@ -1,0 +1,12 @@
+[
+  {
+    "file": "cam15_test1.pdf",
+    "title": "Cambridge 15 - Test 1",
+    "timeLimit": 3600
+  },
+  {
+    "file": "cam15_test2.pdf",
+    "title": "Cambridge 15 - Test 2",
+    "timeLimit": 3600
+  }
+]
