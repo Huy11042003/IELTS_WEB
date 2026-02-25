@@ -8,13 +8,23 @@
 
 <!-- HEADER -->
 <div class="header">
-  <div class="left-header">
-    <select id="pdfSelector">
-      <option value="">Select Test</option>
-    </select>
+  <div class="header-left-group">
+    <div class="header-title">📖 IELTS Reading Test</div>
   </div>
+  <div class="header-center-group">
+    <button id="startButton" class="start-button" disabled>Start test</button>
+  </div>
+  <div class="header-right-group">
+    <div class="timer" id="timer">--:--</div>
+    <a href="index.html" class="header-close" id="closeReading">✕</a>
+  </div>
+</div>
 
-  <div class="timer" id="timer">--:--</div>
+<!-- SELECTOR ROW -->
+<div class="selector-row">
+  <select id="pdfSelector">
+    <option value="">Select Test</option>
+  </select>
 </div>
 
 <!-- MAIN -->
@@ -38,6 +48,30 @@
 
 <div class="footer-nav" id="questionNav"></div>
 
+<script>
+  (function () {
+    var closeBtn = document.getElementById('closeReading');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function (e) {
+        var leave = confirm('Are you sure you want to leave this test? Your answers and time will be lost.');
+        if (!leave) {
+          e.preventDefault();
+        }
+      });
+    }
+
+    window.onbeforeunload = function (e) {
+      var message = 'Are you sure you want to leave this test? Your answers and time will be lost.';
+      e = e || window.event;
+      if (e) {
+        e.returnValue = message;
+      }
+      return message;
+    };
+  })();
+</script>
+
 <script src="script.js"></script>
 </body>
 </html>
+

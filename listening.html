@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IELTS Listening Practice</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left-group">
+    <div class="header-title">🎧 IELTS Listening Test</div>
+  </div>
+  <div class="header-right-group">
+    <div class="timer" id="timer">--:--</div>
+    <a href="index.html" class="header-close" id="closeListening">✕</a>
+  </div>
+</div>
+
+<div class="main">
+  <div class="left-panel" style="display:flex;align-items:center;justify-content:center;">
+    <p>Audio player and questions will be added here.</p>
+  </div>
+  <div class="right-panel">
+    <div class="instruction-box">
+      Listening module is under construction.
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var closeBtn = document.getElementById('closeListening');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function (e) {
+        var leave = confirm('Are you sure you want to leave this test? Your progress will be lost.');
+        if (!leave) {
+          e.preventDefault();
+        }
+      });
+    }
+
+    window.onbeforeunload = function (e) {
+      var message = 'Are you sure you want to leave this test? Your progress will be lost.';
+      e = e || window.event;
+      if (e) {
+        e.returnValue = message;
+      }
+      return message;
+    };
+  })();
+</script>
+
+</body>
+</html>
+

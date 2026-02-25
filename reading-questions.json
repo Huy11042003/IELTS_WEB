@@ -1,0 +1,39 @@
+[
+  {
+    "id": "cam15_test1",
+    "title": "Cambridge 15 - Test 1",
+    "questions": [
+      {
+        "number": 1,
+        "type": "short-answer",
+        "prompt": "Choose NO MORE THAN THREE WORDS AND/OR A NUMBER from the passage for each answer."
+      },
+      {
+        "number": 2,
+        "type": "short-answer",
+        "prompt": "Write your answer in the box below."
+      },
+      {
+        "number": 3,
+        "type": "short-answer",
+        "prompt": "Refer to paragraph 3 of the passage and answer the question."
+      }
+    ]
+  },
+  {
+    "id": "cam15_test2",
+    "title": "Cambridge 15 - Test 2",
+    "questions": [
+      {
+        "number": 1,
+        "type": "short-answer",
+        "prompt": "Answer using NO MORE THAN TWO WORDS from the passage."
+      },
+      {
+        "number": 2,
+        "type": "short-answer",
+        "prompt": "Write your answer in the box below."
+      }
+    ]
+  }
+]

@@ -54,6 +54,75 @@ body {
   padding: 0 20px;
 }
 
+.header-title {
+  font-weight: bold;
+  font-size: 18px;
+  margin-right: 24px;
+}
+
+.header-left-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-right-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-center-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+.start-button {
+  padding: 6px 18px;
+  border-radius: 999px;
+  border: none;
+  background: #1976d2;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.start-button:disabled {
+  background: #b0bec5;
+  cursor: default;
+}
+
+.header-link {
+  text-decoration: none;
+  color: #1976d2;
+  font-size: 14px;
+}
+
+.header-close {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  background: #fafafa;
+}
+
+.header-close:hover {
+  background: #e0e0e0;
+}
+
+/* READING SELECTOR ROW */
+.selector-row {
+  padding: 8px 20px 0;
+}
+
 select {
   padding: 6px 10px;
   font-size: 14px;
@@ -106,6 +175,57 @@ select {
   background: white;
   border-top: 1px solid #ddd;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  padding: 0 16px;
+  gap: 8px;
+  overflow-x: auto;
+  box-sizing: border-box;
+}
+
+/* QUESTIONS */
+.question-card {
+  background: white;
+  border-radius: 10px;
+  padding: 16px 18px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.question-header {
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.question-prompt {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.question-input {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.question-nav-button {
+  min-width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  background: #fafafa;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.question-nav-button:hover {
+  background: #e0e0e0;
+}
+
+.no-questions {
+  font-size: 14px;
+  color: #555;
 }

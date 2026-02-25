@@ -1,10 +1,12 @@
 [
   {
-    "file": "cam15_test1.pdf",
-    "title": "Cambridge 15 - Test 1",
+    "id": "50",
+    "file": "50.pdf",
+    "title": "50",
     "timeLimit": 3600
   },
   {
+    "id": "cam15_test2",
     "file": "cam15_test2.pdf",
     "title": "Cambridge 15 - Test 2",
     "timeLimit": 3600
