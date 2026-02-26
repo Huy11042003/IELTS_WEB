@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IELTS Reading Review</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .review-main {
+      display: flex;
+      height: calc(100vh - 60px);
+    }
+    .review-left {
+      flex: 1;
+      background: #000;
+    }
+    .review-right {
+      width: 340px;
+      padding: 16px;
+      background: #fafafa;
+      overflow-y: auto;
+      border-left: 1px solid #ddd;
+      box-sizing: border-box;
+    }
+    .review-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left-group">
+    <div class="header-title">📖 Reading Review & Answers</div>
+  </div>
+  <div class="header-right-group">
+    <a href="index.html" class="header-close">✕</a>
+  </div>
+</div>
+
+<div class="review-main">
+  <div class="review-left">
+    <iframe id="pdfReview" class="review-iframe"></iframe>
+  </div>
+  <div class="review-right">
+    <p style="font-size:13px;color:#555;margin-top:0;">
+      Review the passage and compare with the answers below.
+    </p>
+    <div id="answerPanel">
+      <h3 style="margin-top:16px;">Answer key (placeholder)</h3>
+      <p style="font-size:13px;color:#777;">You can add real answers here later.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    function getQueryParam(key) {
+      var params = new URLSearchParams(window.location.search);
+      return params.get(key);
+    }
+
+    var testId = getQueryParam("test") || localStorage.getItem("reading_lastTestId") || "";
+    var lastFile = localStorage.getItem("reading_lastFile");
+
+    function loadPdf() {
+      if (lastFile) {
+        document.getElementById("pdfReview").src = "reading/" + lastFile;
+        return;
+      }
+      fetch("pdf-list.json")
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          var item = data.find(function (x) { return x.id === testId; });
+          if (item) {
+            document.getElementById("pdfReview").src = "reading/" + item.file;
+          }
+        })
+        .catch(function () {});
+    }
+
+    loadPdf();
+  })();
+</script>
+
+</body>
+</html>
+

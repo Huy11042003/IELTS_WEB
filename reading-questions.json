@@ -5,18 +5,41 @@
     "questions": [
       {
         "number": 1,
-        "type": "short-answer",
-        "prompt": "Choose NO MORE THAN THREE WORDS AND/OR A NUMBER from the passage for each answer."
+        "type": "gap-filling",
+        "prompt": "Choose NO MORE THAN THREE WORDS AND/OR A NUMBER from the passage for each answer.",
+        "wordLimit": "NO MORE THAN THREE WORDS AND/OR A NUMBER"
       },
       {
         "number": 2,
-        "type": "short-answer",
-        "prompt": "Write your answer in the box below."
+        "type": "true-false-not-given",
+        "prompt": "Do the following statements agree with the information given in the passage? Write TRUE if the statement agrees; FALSE if it contradicts; NOT GIVEN if there is no information."
       },
       {
         "number": 3,
-        "type": "short-answer",
-        "prompt": "Refer to paragraph 3 of the passage and answer the question."
+        "type": "yes-no-not-given",
+        "prompt": "Do the following statements agree with the views of the writer? Write YES if the statement agrees; NO if it contradicts; NOT GIVEN if there is no information."
+      },
+      {
+        "number": 4,
+        "type": "multiple-choice",
+        "prompt": "Choose the correct letter, A, B, C or D.",
+        "options": [
+          "A – first option",
+          "B – second option",
+          "C – third option",
+          "D – fourth option"
+        ]
+      },
+      {
+        "number": 5,
+        "type": "matching",
+        "prompt": "Match each statement with the correct person, A–E. Write the correct letter, A–E.",
+        "matchOptions": ["A", "B", "C", "D", "E"],
+        "items": [
+          { "number": 1, "prompt": "Statement about person 1" },
+          { "number": 2, "prompt": "Statement about person 2" },
+          { "number": 3, "prompt": "Statement about person 3" }
+        ]
       }
     ]
   },
@@ -26,13 +49,20 @@
     "questions": [
       {
         "number": 1,
-        "type": "short-answer",
-        "prompt": "Answer using NO MORE THAN TWO WORDS from the passage."
+        "type": "gap-filling",
+        "prompt": "Answer using NO MORE THAN TWO WORDS from the passage.",
+        "wordLimit": "NO MORE THAN TWO WORDS"
       },
       {
         "number": 2,
-        "type": "short-answer",
-        "prompt": "Write your answer in the box below."
+        "type": "multiple-choice",
+        "prompt": "Choose the correct letter, A, B, C or D.",
+        "options": [
+          "A – option one",
+          "B – option two",
+          "C – option three",
+          "D – option four"
+        ]
       }
     ]
   }

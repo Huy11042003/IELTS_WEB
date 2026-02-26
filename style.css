@@ -94,6 +94,21 @@ body {
   cursor: default;
 }
 
+.submit-button {
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: none;
+  background: #2e7d32;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.submit-button:disabled {
+  background: #b0bec5;
+  cursor: default;
+}
+
 .header-link {
   text-decoration: none;
   color: #1976d2;
@@ -192,14 +207,33 @@ select {
   box-shadow: 0 2px 6px rgba(0,0,0,0.06);
 }
 
+.question-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
 .question-header {
   font-weight: bold;
-  margin-bottom: 6px;
+}
+
+.question-type-badge {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: #1976d2;
+  background: #e3f2fd;
+  padding: 4px 8px;
+  border-radius: 6px;
 }
 
 .question-prompt {
   font-size: 14px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .question-input {
@@ -209,6 +243,82 @@ select {
   border-radius: 6px;
   border: 1px solid #ccc;
   box-sizing: border-box;
+}
+
+.question-options-inline,
+.question-options-list {
+  margin-top: 8px;
+}
+
+.question-options-inline {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.question-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.question-option-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.question-option-label-block {
+  display: flex;
+  padding: 4px 0;
+}
+
+.question-choice-row {
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.question-choice-row:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.question-choice-row-label {
+  font-weight: 600;
+  margin-right: 6px;
+}
+
+.question-choice-statement {
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.question-matching-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.question-matching-number {
+  font-weight: 600;
+  min-width: 24px;
+}
+
+.question-matching-prompt {
+  flex: 1;
+  min-width: 120px;
+  font-size: 14px;
+}
+
+.question-select {
+  width: auto;
+  min-width: 56px;
 }
 
 .question-nav-button {
