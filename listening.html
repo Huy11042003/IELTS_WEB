@@ -62,6 +62,7 @@
     var timeRemaining = 0;
     var pendingTimeLimit = 0;
     var pendingAudio = null;
+    var pendingAudioUrl = null;
     var pendingTestId = null;
 
     // helper to fetch questions for a specific test
@@ -106,8 +107,8 @@
         var duration = pendingTimeLimit || 30 * 60;
         startTimer(duration);
         // play audio if configured
-        if (audioPlayer && pendingAudio) {
-          audioPlayer.src = "listening/audio/" + pendingAudio;
+        if (audioPlayer && (pendingAudioUrl || pendingAudio)) {
+          audioPlayer.src = pendingAudioUrl || ("listening/audio/" + pendingAudio);
           audioPlayer.play().catch(function(){});
           // prevent pausing by user
           audioPlayer.addEventListener('pause', function () {
@@ -365,6 +366,7 @@
             opt.textContent = item.title;
             if (item.timeLimit) opt.dataset.time = item.timeLimit;
             if (item.audio) opt.dataset.audio = item.audio;
+            if (item.audioUrl) opt.dataset.audioUrl = item.audioUrl;
             opt.dataset.testId = item.id || item.file;
             selector.appendChild(opt);
           });
@@ -386,12 +388,14 @@
           var chosen = this.options[this.selectedIndex];
           pendingTimeLimit = parseInt(chosen.dataset.time, 10) || 0;
           pendingAudio = chosen.dataset.audio || null;
+          pendingAudioUrl = chosen.dataset.audioUrl || null;
           pendingTestId = chosen.dataset.testId || null;
           if (pdfViewer) pdfViewer.src = "listening/" + val;
           if (startBtn) startBtn.disabled = false;
         } else {
           pendingTimeLimit = 0;
           pendingAudio = null;
+          pendingAudioUrl = null;
           pendingTestId = null;
           if (pdfViewer) pdfViewer.src = "";
           if (startBtn) startBtn.disabled = true;
