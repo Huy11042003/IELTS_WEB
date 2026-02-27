@@ -152,7 +152,7 @@ select {
 /* MAIN */
 .main {
   display: flex;
-  height: calc(100vh - 120px);
+  height: calc(100vh - 160px);
 }
 
 /* LEFT */
@@ -177,7 +177,7 @@ select {
 }
 
 .instruction-box {
-  background: #d32f2f;
+  background: #4695ef;
   color: white;
   padding: 15px;
   border-radius: 8px;
@@ -195,7 +195,27 @@ select {
   padding: 0 16px;
   gap: 8px;
   overflow-x: auto;
+  overflow-y: hidden;
+  flex-wrap: nowrap;
   box-sizing: border-box;
+}
+
+.section-header {
+  font-size: 12px;
+  font-weight: bold;
+  color: #555;
+  padding: 0 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.section-header::after {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 24px;
+  background: #ddd;
+  margin-left: 8px;
 }
 
 /* QUESTIONS */
@@ -329,10 +349,18 @@ select {
   background: #fafafa;
   cursor: pointer;
   font-size: 13px;
+  flex-shrink: 0;
 }
 
 .question-nav-button:hover {
   background: #e0e0e0;
+}
+
+.question-nav-button.answered {
+  background: #1976d2;
+  color: white;
+  border-color: #1565c0;
+  font-weight: bold;
 }
 
 .no-questions {

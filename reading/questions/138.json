@@ -1,0 +1,88 @@
+{
+  "id": "138",
+  "title": "138",
+  "questions": [
+    {
+      "number": 29,
+      "section": 3,
+      "type": "yes-no-not-given",
+      "prompt": "YES / NO / NOT GIVEN."
+    },
+    {
+      "number": 30,
+      "section": 3,
+      "type": "yes-no-not-given",
+      "prompt": "YES / NO / NOT GIVEN."
+    },
+    {
+      "number": 31,
+      "section": 3,
+      "type": "yes-no-not-given",
+      "prompt": "YES / NO / NOT GIVEN."
+    },
+    {
+      "number": 32,
+      "section": 3,
+      "type": "yes-no-not-given",
+      "prompt": "YES / NO / NOT GIVEN."
+    },
+    {
+      "number": 33,
+      "section": 3,
+      "type": "yes-no-not-given",
+      "prompt": "YES / NO / NOT GIVEN."
+    },
+    {
+      "number": 34,
+      "section": 3,
+      "type": "yes-no-not-given",
+      "prompt": "YES / NO / NOT GIVEN."
+    },
+    {
+      "number": 35,
+      "section": 3,
+      "type": "yes-no-not-given",
+      "prompt": "YES / NO / NOT GIVEN."
+    },
+    {
+      "number": 36,
+      "section": 3,
+      "type": "gap-filling",
+      "prompt": "Choose ONE OR TWO WORDS.",
+      "wordLimit": "ONE OR TWO WORDS"
+    },
+    {
+      "number": 37,
+      "section": 3,
+      "type": "gap-filling",
+      "prompt": "Choose ONE OR TWO WORDS.",
+      "wordLimit": "ONE OR TWO WORDS"
+    },
+    {
+      "number": 38,
+      "section": 3,
+      "type": "gap-filling",
+      "prompt": "Choose ONE OR TWO WORDS.",
+      "wordLimit": "ONE OR TWO WORDS"
+    },
+    {
+      "number": 39,
+      "section": 3,
+      "type": "gap-filling",
+      "prompt": "Choose ONE OR TWO WORDS.",
+      "wordLimit": "ONE OR TWO WORDS"
+    },
+    {
+      "number": 40,
+      "section": 3,
+      "type": "multiple-choice",
+      "prompt": "Choose the correct letter, A, B, C or D.",
+      "options": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ]
+    }
+  ]
+}

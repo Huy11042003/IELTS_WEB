@@ -25,6 +25,9 @@
       height: 100%;
       border: none;
     }
+    .answer-item { margin-bottom:8px; }
+    .answer-item span.number { font-weight:bold; margin-right:6px; }
+    .incorrect-line { color: #c62828; }
   </style>
 </head>
 <body>
@@ -47,8 +50,11 @@
       Review the passage and compare with the answers below.
     </p>
     <div id="answerPanel">
-      <h3 style="margin-top:16px;">Answer key (placeholder)</h3>
-      <p style="font-size:13px;color:#777;">You can add real answers here later.</p>
+      <h3 style="margin-top:16px;">Answer key</h3>
+      <div id="scoreInfo" style="font-size:16px; font-weight:bold; color:#333; margin-bottom:8px;">Score: --/--</div>
+      <div id="answersList">
+        <p style="font-size:13px;color:#777;">Loading answers...</p>
+      </div>
     </div>
   </div>
 </div>
@@ -79,7 +85,66 @@
         .catch(function () {});
     }
 
+    function renderAnswers(data) {
+      var container = document.getElementById("answersList");
+      container.innerHTML = "";
+      if (!data || !Array.isArray(data.answers)) {
+        container.textContent = "No answer data available.";
+        return;
+      }
+      var userData = {};
+      try {
+        var raw = localStorage.getItem('reading_answers_' + testId);
+        if (raw) userData = JSON.parse(raw);
+      } catch (e) {}
+      var total=0,correctCount=0;
+      data.answers.forEach(function(ans){
+        total++;
+        var div=document.createElement("div");
+        div.className="answer-item";
+        var num=document.createElement("span");
+        num.className="number";
+        num.textContent=ans.number+".";
+        div.appendChild(num);
+        var correctText="";
+        if(ans.acceptableAnswers)correctText=ans.acceptableAnswers.join(" / ");
+        else if(ans.allOf)correctText=ans.allOf.join(" + ");
+        else if(ans.answer)correctText=ans.answer;
+        else correctText="(no answer)";
+        var userResp=userData[ans.number];
+        var userText="";
+        if(userResp){ if(Array.isArray(userResp)) userText=userResp.join(" / "); else userText=userResp; }
+        var correct=false;
+        if(ans.acceptableAnswers){
+          if(userResp){
+            if(Array.isArray(userResp)) correct=userResp.some(r=>ans.acceptableAnswers.includes(r));
+            else correct=ans.acceptableAnswers.includes(userResp);
+          }
+        } else if(ans.allOf){
+          if(Array.isArray(userResp)) correct=ans.allOf.every(v=>userResp.includes(v));
+        } else if(ans.answer){
+          if(userResp){
+            if(Array.isArray(userResp)) correct=userResp.includes(ans.answer);
+            else correct=userResp===ans.answer;
+          }
+        }
+        if(correct){ correctCount++; div.appendChild(document.createTextNode(correctText+" ✅")); }
+        else { div.classList.add('incorrect-line'); var txt=document.createTextNode((userText||"(no answer)")+" – "); div.appendChild(txt); var bold=document.createElement('strong'); bold.textContent=correctText; div.appendChild(bold); }
+        container.appendChild(div);
+      });
+      var scoreEl=document.getElementById('scoreInfo'); if(scoreEl) scoreEl.textContent='Score: '+correctCount+'/'+total;
+    }
+
+    function loadAnswers(){
+      if(!testId){ document.getElementById("answersList").textContent="Test ID not specified."; return; }
+      fetch("reading/answers/"+encodeURIComponent(testId)+".json")
+        .then(res=>res.json())
+        .then(renderAnswers)
+        .catch(function(){ document.getElementById("answersList").textContent="Unable to load answers."; });
+    }
+
     loadPdf();
+    loadAnswers();
   })();
 </script>
 

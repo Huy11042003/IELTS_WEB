@@ -10,26 +10,394 @@
   <div class="header-left-group">
     <div class="header-title">🎧 IELTS Listening Test</div>
   </div>
+  <div class="header-center-group">
+    <button id="startButton" class="start-button" disabled>Start test</button>
+  </div>
   <div class="header-right-group">
+    <button id="submitButton" class="submit-button" disabled>Submit</button>
     <div class="timer" id="timer">--:--</div>
     <a href="index.html" class="header-close" id="closeListening">✕</a>
   </div>
 </div>
 
+<div class="selector-row">
+  <select id="testSelector">
+    <option value="">Select Test</option>
+  </select>
+</div>
+
 <div class="main">
-  <div class="left-panel" style="display:flex;align-items:center;justify-content:center;">
-    <p>Audio player and questions will be added here.</p>
+  <!-- LEFT: PDF display for questions/text -->
+  <div class="left-panel">
+    <iframe id="pdfViewer"></iframe>
   </div>
+
+  <!-- RIGHT: audio controls + instructions -->
   <div class="right-panel">
     <div class="instruction-box">
-      Listening module is under construction.
+      Audio will begin automatically when the test starts. You may adjust volume but playback cannot be paused.
     </div>
+    <audio id="audioPlayer" style="width:100%; margin-top:10px;" preload="none"></audio>
+    <div style="margin-top:8px;">
+      <label for="volumeControl">Volume:</label>
+      <input type="range" id="volumeControl" min="0" max="1" step="0.01" value="1">
+    </div>
+    <div id="questionArea"></div>
   </div>
 </div>
 
+<div class="footer-nav" id="questionNav"></div>
+
 <script>
   (function () {
+    var timerDisplay = document.getElementById('timer');
+    var startBtn = document.getElementById('startButton');
+    var submitBtn = document.getElementById('submitButton');
+    var selector = document.getElementById('testSelector');
+    var pdfViewer = document.getElementById('pdfViewer');
+    var audioPlayer = document.getElementById('audioPlayer');
+    var questionArea = document.getElementById('questionArea');
+    var questionNav = document.getElementById('questionNav');
+    var timerInterval = null;
+    var timeRemaining = 0;
+    var pendingTimeLimit = 0;
+    var pendingAudio = null;
+    var pendingTestId = null;
+
+    // helper to fetch questions for a specific test
+    function fetchQuestions(testId) {
+      return fetch("listening/questions/" + encodeURIComponent(testId) + ".json")
+        .then(res => {
+          if (!res.ok) throw new Error("no question file");
+          return res.json();
+        })
+        .catch(() => null);
+    }
+
+    function updateTimerDisplay() {
+      if (!timerDisplay) return;
+      var minutes = Math.floor(timeRemaining / 60);
+      var seconds = timeRemaining % 60;
+      timerDisplay.textContent =
+        minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+    }
+
+    function startTimer(totalSeconds) {
+      if (timerInterval) clearInterval(timerInterval);
+      timeRemaining = totalSeconds;
+      updateTimerDisplay();
+      timerInterval = setInterval(function () {
+        timeRemaining--;
+        if (timeRemaining <= 0) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+          timeRemaining = 0;
+          updateTimerDisplay();
+          alert('Time is up for the listening test.');
+        } else {
+          updateTimerDisplay();
+        }
+      }, 1000);
+    }
+
+    if (startBtn) {
+      startBtn.addEventListener('click', function () {
+        // determine time limit from selector choice or fallback to 30 minutes
+        var duration = pendingTimeLimit || 30 * 60;
+        startTimer(duration);
+        // play audio if configured
+        if (audioPlayer && pendingAudio) {
+          audioPlayer.src = "listening/audio/" + pendingAudio;
+          audioPlayer.play().catch(function(){});
+          // prevent pausing by user
+          audioPlayer.addEventListener('pause', function () {
+            if (!audioPlayer.ended) audioPlayer.play();
+          });
+        }
+        // load and render questions
+        if (pendingTestId) {
+          fetchQuestions(pendingTestId).then(testData => {
+            renderQuestions(testData);
+          });
+        }
+        startBtn.disabled = true;
+        if (submitBtn) submitBtn.disabled = false;
+      });
+    }
+
+    if (submitBtn) {
+      submitBtn.addEventListener('click', function () {
+        var ok = confirm('Submit listening test now?');
+        if (!ok) return;
+        if (timerInterval) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+        }
+        try {
+          localStorage.setItem('listening_lastTestId', pendingTestId);
+          // store selected file for pdf viewer if available
+          var sel = selector && selector.options[selector.selectedIndex];
+          if (sel && sel.value) {
+            localStorage.setItem('listening_lastFile', sel.value);
+          }
+          // collect user answers
+          var inputs = document.querySelectorAll('[name^="q"]');
+          var responses = {};
+          inputs.forEach(function(el) {
+            var name = el.name;
+            var base = name.split('_')[0];
+            var num = base.replace(/^q/, '');
+            var val;
+            if (el.type === 'radio') {
+              if (!el.checked) return;
+              val = el.value;
+            } else if (el.tagName === 'SELECT') {
+              val = el.value;
+            } else {
+              val = el.value.trim();
+            }
+            if (val === undefined || val === '') return;
+            if (!responses[num]) responses[num] = [];
+            responses[num].push(val);
+          });
+          localStorage.setItem('listening_answers_' + pendingTestId, JSON.stringify(responses));
+        } catch (e) {}
+        // redirect to review
+        window.location.href = 'listening-review.html?test=' + encodeURIComponent(pendingTestId);
+      });
+    }
+
     var closeBtn = document.getElementById('closeListening');
+
+    var QUESTION_TYPE_LABELS = {
+      "gap-filling": "Gap filling",
+      "multiple-choice": "Multiple choice",
+      "matching": "Matching"
+    };
+
+    function renderQuestions(test) {
+      questionArea.innerHTML = "";
+      questionNav.innerHTML = "";
+
+      if (!test || !Array.isArray(test.questions) || test.questions.length === 0) {
+        const msg = document.createElement("div");
+        msg.className = "no-questions";
+        msg.textContent = "Questions for this test will be added soon.";
+        questionArea.appendChild(msg);
+        return;
+      }
+
+      var navButtons = {}; // Store buttons by question number
+
+      test.questions.forEach(q => {
+        const card = document.createElement("div");
+        card.className = "question-card";
+        card.id = "q-" + q.number;
+
+        const headerRow = document.createElement("div");
+        headerRow.className = "question-header-row";
+        const header = document.createElement("div");
+        header.className = "question-header";
+        header.textContent = "Question " + q.number;
+        const typeLabel = document.createElement("span");
+        typeLabel.className = "question-type-badge";
+        typeLabel.textContent = QUESTION_TYPE_LABELS[q.type] || q.type || "Question";
+        headerRow.appendChild(header);
+        headerRow.appendChild(typeLabel);
+        card.appendChild(headerRow);
+
+        const prompt = document.createElement("div");
+        prompt.className = "question-prompt";
+        prompt.textContent = q.prompt;
+        card.appendChild(prompt);
+
+        appendAnswerArea(card, q);
+        questionArea.appendChild(card);
+
+        // Add change listeners to mark button as answered
+        var inputs = card.querySelectorAll('input[name^="q"], select[name^="q"]');
+        inputs.forEach(input => {
+          input.addEventListener('change', function() {
+            markQuestionAnswered(q.number);
+          });
+          input.addEventListener('input', function() {
+            markQuestionAnswered(q.number);
+          });
+        });
+      });
+
+      function markQuestionAnswered(qNumber) {
+        if (navButtons[qNumber]) {
+          navButtons[qNumber].classList.add('answered');
+        }
+      }
+
+      // Group buttons by section
+      var sections = {};
+      test.questions.forEach(q => {
+        var sec = q.section || 1;
+        if (!sections[sec]) sections[sec] = [];
+        sections[sec].push(q);
+      });
+
+      Object.keys(sections).sort((a, b) => a - b).forEach(sec => {
+        var secHeader = document.createElement("div");
+        secHeader.className = "section-header";
+        secHeader.textContent = "Section " + sec;
+        questionNav.appendChild(secHeader);
+
+        sections[sec].forEach(q => {
+          const navBtn = document.createElement("button");
+          navBtn.className = "question-nav-button";
+          navBtn.textContent = q.number;
+          navButtons[q.number] = navBtn; // Store button reference
+          navBtn.addEventListener("click", function () {
+            const target = document.getElementById("q-" + q.number);
+            if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+          });
+          questionNav.appendChild(navBtn);
+        });
+      });
+    }
+
+    function appendAnswerArea(card, q) {
+      var type = q.type || "gap-filling";
+      var name = "q" + q.number;
+
+      if (type === "gap-filling") {
+        var count = q.answersCount || 1;
+        for (var i = 0; i < count; i++) {
+          var input = document.createElement("input");
+          input.type = "text";
+          input.className = "question-input";
+          input.placeholder = q.wordLimit ? q.wordLimit : "Type your answer here";
+          input.name = name + (count > 1 ? "_" + (i+1) : "");
+          card.appendChild(input);
+        }
+        return;
+      }
+
+      if (type === "multiple-choice" && q.options && q.options.length) {
+        var opts = document.createElement("div");
+        opts.className = "question-options-list";
+        q.options.forEach(function (opt, i) {
+          var label = document.createElement("label");
+          label.className = "question-option-label question-option-label-block";
+          var radio = document.createElement("input");
+          radio.type = "radio";
+          radio.name = name;
+          var letter = opt.trim().match(/^([A-Z])[\s\-–:]/);
+          radio.value = letter ? letter[1] : String.fromCharCode(65 + i);
+          label.appendChild(radio);
+          label.appendChild(document.createTextNode(" " + opt));
+          opts.appendChild(label);
+        });
+        card.appendChild(opts);
+        return;
+      }
+
+      if (type === "matching" && q.matchOptions) {
+        // if there are specific items, show a dropdown for each
+        if (Array.isArray(q.items) && q.items.length) {
+          q.items.forEach(function (item, idx) {
+            var row = document.createElement("div");
+            row.className = "question-matching-row";
+            var rowLabel = document.createElement("span");
+            rowLabel.className = "question-matching-number";
+            rowLabel.textContent = (item.number != null ? item.number : idx + 1) + ".";
+            var statement = document.createElement("span");
+            statement.className = "question-matching-prompt";
+            statement.textContent = item.prompt || "";
+            var select = document.createElement("select");
+            select.className = "question-input question-select";
+            select.name = name + "_" + (idx + 1);
+            var empty = document.createElement("option");
+            empty.value = "";
+            empty.textContent = "—";
+            select.appendChild(empty);
+            q.matchOptions.forEach(function (opt) {
+              var o = document.createElement("option");
+              o.value = opt;
+              o.textContent = opt;
+              select.appendChild(o);
+            });
+            row.appendChild(rowLabel);
+            row.appendChild(statement);
+            row.appendChild(select);
+            card.appendChild(row);
+          });
+        } else {
+          // no items provided -> single dropdown only
+          var select = document.createElement("select");
+          select.className = "question-input question-select";
+          select.name = name;
+          var empty = document.createElement("option");
+          empty.value = "";
+          empty.textContent = "—";
+          select.appendChild(empty);
+          q.matchOptions.forEach(function (opt) {
+            var o = document.createElement("option");
+            o.value = opt;
+            o.textContent = opt;
+            select.appendChild(o);
+          });
+          card.appendChild(select);
+        }
+        return;
+      }
+
+      var fallback = document.createElement("input");
+      fallback.type = "text";
+      fallback.className = "question-input";
+      fallback.placeholder = "Type your answer here";
+      fallback.name = name;
+      card.appendChild(fallback);
+    }
+
+    if (selector) {
+      // populate test dropdown
+      fetch('listening-list.json')
+        .then(res => res.json())
+        .then(data => {
+          data.forEach(item => {
+            var opt = document.createElement('option');
+            opt.value = item.file;
+            opt.textContent = item.title;
+            if (item.timeLimit) opt.dataset.time = item.timeLimit;
+            if (item.audio) opt.dataset.audio = item.audio;
+            opt.dataset.testId = item.id || item.file;
+            selector.appendChild(opt);
+          });
+        })
+        .catch(() => {
+          // ignore
+        });
+      // volume control handling
+      var volControl = document.getElementById('volumeControl');
+      if (volControl) {
+        volControl.addEventListener('input', function () {
+          if (audioPlayer) audioPlayer.volume = parseFloat(this.value);
+        });
+      }
+
+      selector.addEventListener('change', function () {
+        var val = this.value;
+        if (val) {
+          var chosen = this.options[this.selectedIndex];
+          pendingTimeLimit = parseInt(chosen.dataset.time, 10) || 0;
+          pendingAudio = chosen.dataset.audio || null;
+          pendingTestId = chosen.dataset.testId || null;
+          if (pdfViewer) pdfViewer.src = "listening/" + val;
+          if (startBtn) startBtn.disabled = false;
+        } else {
+          pendingTimeLimit = 0;
+          pendingAudio = null;
+          pendingTestId = null;
+          if (pdfViewer) pdfViewer.src = "";
+          if (startBtn) startBtn.disabled = true;
+        }
+      });
+    }
     if (closeBtn) {
       closeBtn.addEventListener('click', function (e) {
         var leave = confirm('Are you sure you want to leave this test? Your progress will be lost.');

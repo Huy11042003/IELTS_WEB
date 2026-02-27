@@ -1,0 +1,18 @@
+{
+  "id": "test2",
+  "title": "Listening Test 2",
+  "answers": [
+    { "number": 29, "acceptableAnswers": ["NOT GIVEN"] },
+    { "number": 30, "acceptableAnswers": ["YES"] },
+    { "number": 31, "acceptableAnswers": ["YES"] },
+    { "number": 32, "acceptableAnswers": ["NOT GIVEN"] },
+    { "number": 33, "acceptableAnswers": ["YES"] },
+    { "number": 34, "acceptableAnswers": ["NO"] },
+    { "number": 35, "acceptableAnswers": ["NO"] },
+    { "number": 36, "acceptableAnswers": ["role sign"] },
+    { "number": 37, "acceptableAnswers": ["ritual"] },
+    { "number": 38, "acceptableAnswers": ["role sign"] },
+    { "number": 39, "acceptableAnswers": ["role set"] },
+    { "number": 40, "acceptableAnswers": ["C"] }
+  ]
+}

@@ -9,7 +9,6 @@ const questionNav = document.getElementById("questionNav");
 const startButton = document.getElementById("startButton");
 const submitButton = document.getElementById("submitButton");
 
-let readingTests = [];
 let pendingTimeLimit = 0;
 let pendingTestId = null;
 let pendingFile = null;
@@ -28,15 +27,17 @@ fetch("pdf-list.json")
     });
   });
 
-/* Load reading questions metadata */
-fetch("reading-questions.json")
-  .then(res => res.json())
-  .then(data => {
-    readingTests = data;
-  })
-  .catch(() => {
-    readingTests = [];
-  });
+
+// helper to fetch questions for a specific test
+function fetchQuestions(testId) {
+  // assumes files stored under reading/questions/<testId>.json
+  return fetch("reading/questions/" + encodeURIComponent(testId) + ".json")
+    .then(res => {
+      if (!res.ok) throw new Error("no question file");
+      return res.json();
+    })
+    .catch(() => null);
+}
 
 /* When user selects a test */
 selector.addEventListener("change", function () {
@@ -65,8 +66,16 @@ selector.addEventListener("change", function () {
 if (startButton) {
   startButton.addEventListener("click", function () {
     if (!pendingTimeLimit || !pendingTestId) return;
+    // once started, disable start control and selector so it can't be reused
+    startButton.disabled = true;
+    if (selector) selector.disabled = true;
+
     startTimer(pendingTimeLimit);
-    renderQuestions(pendingTestId);
+
+    // load questions file for this test and render
+    fetchQuestions(pendingTestId).then(testData => {
+      renderQuestions(testData);
+    });
 
     if (submitButton) {
       submitButton.disabled = false;
@@ -85,6 +94,27 @@ if (submitButton) {
     try {
       localStorage.setItem("reading_lastTestId", pendingTestId);
       localStorage.setItem("reading_lastFile", pendingFile);
+      // collect answers from inputs
+      var inputs = document.querySelectorAll('[name^="q"]');
+      var responses = {};
+      inputs.forEach(function(el) {
+        var name = el.name;
+        var base = name.split('_')[0];
+        var num = base.replace(/^q/, '');
+        var val;
+        if (el.type === 'radio') {
+          if (!el.checked) return;
+          val = el.value;
+        } else if (el.tagName === 'SELECT') {
+          val = el.value;
+        } else {
+          val = el.value.trim();
+        }
+        if (val === undefined || val === '') return;
+        if (!responses[num]) responses[num] = [];
+        responses[num].push(val);
+      });
+      localStorage.setItem('reading_answers_' + pendingTestId, JSON.stringify(responses));
     } catch (e) {
       // ignore storage errors
     }
@@ -124,13 +154,11 @@ var QUESTION_TYPE_LABELS = {
   "gap-filling": "Gap filling",
   "multiple-choice": "Multiple choice",
   "matching": "Matching",
-  "true-false-not-given": "T / F / NG",
-  "yes-no-not-given": "Y / N / NG"
+  "true-false-not-given": "True / False / Not Given",
+  "yes-no-not-given": "Yes / No / Not Given"
 };
 
-function renderQuestions(testId) {
-  const test = readingTests.find(t => t.id === testId);
-
+function renderQuestions(test) {
   questionArea.innerHTML = "";
   questionNav.innerHTML = "";
 
@@ -141,6 +169,8 @@ function renderQuestions(testId) {
     questionArea.appendChild(msg);
     return;
   }
+
+  var navButtons = {}; // Store buttons by question number
 
   test.questions.forEach(q => {
     const card = document.createElement("div");
@@ -167,14 +197,49 @@ function renderQuestions(testId) {
     appendAnswerArea(card, q);
     questionArea.appendChild(card);
 
-    const navBtn = document.createElement("button");
-    navBtn.className = "question-nav-button";
-    navBtn.textContent = q.number;
-    navBtn.addEventListener("click", function () {
-      const target = document.getElementById("q-" + q.number);
-      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    // Add change listeners to mark button as answered
+    var inputs = card.querySelectorAll('input[name^="q"], select[name^="q"]');
+    inputs.forEach(input => {
+      input.addEventListener('change', function() {
+        markQuestionAnswered(q.number);
+      });
+      input.addEventListener('input', function() {
+        markQuestionAnswered(q.number);
+      });
     });
-    questionNav.appendChild(navBtn);
+  });
+
+  function markQuestionAnswered(qNumber) {
+    if (navButtons[qNumber]) {
+      navButtons[qNumber].classList.add('answered');
+    }
+  }
+
+  // Group buttons by section
+  var sections = {};
+  test.questions.forEach(q => {
+    var sec = q.section || 1;
+    if (!sections[sec]) sections[sec] = [];
+    sections[sec].push(q);
+  });
+
+  Object.keys(sections).sort((a, b) => a - b).forEach(sec => {
+    var secHeader = document.createElement("div");
+    secHeader.className = "section-header";
+    secHeader.textContent = "Section " + sec;
+    questionNav.appendChild(secHeader);
+
+    sections[sec].forEach(q => {
+      const navBtn = document.createElement("button");
+      navBtn.className = "question-nav-button";
+      navBtn.textContent = q.number;
+      navButtons[q.number] = navBtn; // Store button reference
+      navBtn.addEventListener("click", function () {
+        const target = document.getElementById("q-" + q.number);
+        if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+      questionNav.appendChild(navBtn);
+    });
   });
 }
 
@@ -192,44 +257,24 @@ function appendAnswerArea(card, q) {
     return;
   }
 
+  // render true/false/not-given like a multiple choice block (letters A/B/C) to unify styles
   if (type === "true-false-not-given" || type === "yes-no-not-given") {
-    var choices = type === "true-false-not-given" ? ["T", "F", "NG"] : ["Y", "N", "NG"];
-    var items = q.items && q.items.length ? q.items : [{ number: q.number, prompt: q.prompt }];
-    var singleStatement = items.length === 1;
-    items.forEach(function (item, idx) {
-      var subName = name + (items.length > 1 ? "_" + (idx + 1) : "");
-      var row = document.createElement("div");
-      row.className = "question-choice-row";
-      if (!singleStatement) {
-        var rowLabel = document.createElement("div");
-        rowLabel.className = "question-choice-row-label";
-        rowLabel.textContent = (item.number != null ? item.number : idx + 1) + ".";
-        row.appendChild(rowLabel);
-      }
-      if (!singleStatement || item.prompt !== q.prompt) {
-        var statement = document.createElement("div");
-        statement.className = "question-choice-statement";
-        statement.textContent = item.prompt || q.prompt;
-        row.appendChild(statement);
-      }
-      var opts = document.createElement("div");
-      opts.className = "question-options-inline";
-      choices.forEach(function (c) {
-        var label = document.createElement("label");
-        label.className = "question-option-label";
-        var radio = document.createElement("input");
-        radio.type = "radio";
-        radio.name = subName;
-        radio.value = c;
-        var span = document.createElement("span");
-        span.textContent = c;
-        label.appendChild(radio);
-        label.appendChild(span);
-        opts.appendChild(label);
-      });
-      row.appendChild(opts);
-      card.appendChild(row);
+    var choices = type === "true-false-not-given" ? ["TRUE","FALSE","NOT GIVEN"] : ["YES","NO","NOT GIVEN"];
+    // convert to multiple-choice like layout
+    var opts = document.createElement("div");
+    opts.className = "question-options-list";
+    choices.forEach(function(c, i) {
+      var label = document.createElement("label");
+      label.className = "question-option-label question-option-label-block";
+      var radio = document.createElement("input");
+      radio.type = "radio";
+      radio.name = name;
+      radio.value = c;
+      label.appendChild(radio);
+      label.appendChild(document.createTextNode(" " + c));
+      opts.appendChild(label);
     });
+    card.appendChild(opts);
     return;
   }
 
