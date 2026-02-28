@@ -71,15 +71,15 @@
 
     function loadPdf() {
       if (lastFile) {
-        document.getElementById("pdfReview").src = "reading/" + lastFile;
+        document.getElementById("pdfReview").src = "reading/pdf/" + lastFile;
         return;
       }
-      fetch("pdf-list.json")
+      fetch("reading-list.json")
         .then(function (res) { return res.json(); })
         .then(function (data) {
           var item = data.find(function (x) { return x.id === testId; });
           if (item) {
-            document.getElementById("pdfReview").src = "reading/" + item.file;
+            document.getElementById("pdfReview").src = "reading/pdf/" + item.file;
           }
         })
         .catch(function () {});

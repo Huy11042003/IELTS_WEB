@@ -14,7 +14,7 @@ let pendingTestId = null;
 let pendingFile = null;
 
 /* Load available PDFs */
-fetch("pdf-list.json")
+fetch("reading-list.json")
   .then(res => res.json())
   .then(data => {
     data.forEach(item => {
@@ -45,8 +45,8 @@ selector.addEventListener("change", function () {
 
   if (!selectedFile) return;
 
-  // Load PDF from reading folder
-  pdfViewer.src = "reading/" + selectedFile;
+  // Load PDF from reading/pdf folder
+  pdfViewer.src = "reading/pdf/" + selectedFile;
 
   // Get time limit from JSON
   const selectedOption = this.options[this.selectedIndex];
