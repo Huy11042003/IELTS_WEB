@@ -1,0 +1,19 @@
+{
+  "id": "140",
+  "title": "140",
+  "answers": [
+    { "number": 1, "acceptableAnswers": ["isolation", "ISOLATION"] },
+    { "number": 2, "acceptableAnswers": ["economic globalisation", "ECONOMIC GLOBALISATION"] },
+    { "number": 3, "acceptableAnswers": ["cultural identity", "CULTURAL IDENTITY"] },
+    { "number": 4, "acceptableAnswers": ["traditional skill", "TRADITIONAL SKILL"] },
+    { "number": 5, "acceptableAnswers": ["E"] },
+    { "number": 6, "acceptableAnswers": ["B"] },
+    { "number": 7, "acceptableAnswers": ["D"] },
+    { "number": 8, "acceptableAnswers": ["C"] },
+    { "number": 9, "acceptableAnswers": ["B"] },
+    { "number": 10, "acceptableAnswers": ["NO"]},
+    { "number": 11, "acceptableAnswers": ["YES"]},
+    { "number": 12, "acceptableAnswers": ["NOT GIVEN"]},
+    { "number": 13, "acceptableAnswers": ["YES"]}
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "139",
+  "title": "139",
+  "answers": [
+    { "number": 26, "acceptableAnswers": ["A"] },
+    { "number": 27, "acceptableAnswers": ["B"] },
+    { "number": 28, "acceptableAnswers": ["B"] },
+    { "number": 29, "acceptableAnswers": ["NOT GIVEN"] },
+    { "number": 30, "acceptableAnswers": ["FALSE"] },
+    { "number": 31, "acceptableAnswers": ["FALSE"] },
+    { "number": 32, "acceptableAnswers": ["TRUE"] },
+    { "number": 33, "acceptableAnswers": ["TRUE"] },
+    { "number": 34, "acceptableAnswers": ["NOT GIVEN"] },
+    { "number": 35, "acceptableAnswers": ["B", "D", "E"], "pairedWith": 36},
+    { "number": 36, "acceptableAnswers": ["B", "D", "E"], "pairedWith": 37 },
+    { "number": 37, "acceptableAnswers": ["B", "D", "E"], "pairedWith": 35 },
+    { "number": 38, "acceptableAnswers": ["B"] },
+    { "number": 39, "acceptableAnswers": ["A"] },
+    { "number": 40, "acceptableAnswers": ["F"] }
+  ]
+}

@@ -25,6 +25,24 @@
       height: 100%;
       border: none;
     }
+    .pdf-toggle {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .pdf-toggle button {
+      padding: 6px 12px;
+      border: 1px solid #ddd;
+      background: #fafafa;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .pdf-toggle button.active {
+      background: #1976d2;
+      color: white;
+      border-color: #1565c0;
+    }
     .answer-item { margin-bottom:8px; }
     .answer-item span.number { font-weight:bold; margin-right:6px; }
     .incorrect-line { color: #c62828; }
@@ -43,6 +61,10 @@
 
 <div class="review-main">
   <div class="review-left">
+    <div class="pdf-toggle">
+      <button id="btnOriginal" class="active">Original PDF</button>
+      <button id="btnEdited">Edited PDF</button>
+    </div>
     <iframe id="pdfReview" class="review-iframe"></iframe>
   </div>
   <div class="review-right">
@@ -68,10 +90,14 @@
 
     var testId = getQueryParam("test") || localStorage.getItem("reading_lastTestId") || "";
     var lastFile = localStorage.getItem("reading_lastFile");
+    var originalPdfPath = null;
+    var editedPdfPath = null;
 
     function loadPdf() {
       if (lastFile) {
-        document.getElementById("pdfReview").src = "reading/pdf/" + lastFile;
+        originalPdfPath = "reading/pdf/" + lastFile;
+        editedPdfPath = "reading/edited/" + lastFile;
+        document.getElementById("pdfReview").src = originalPdfPath;
         return;
       }
       fetch("reading-list.json")
@@ -79,10 +105,35 @@
         .then(function (data) {
           var item = data.find(function (x) { return x.id === testId; });
           if (item) {
-            document.getElementById("pdfReview").src = "reading/pdf/" + item.file;
+            originalPdfPath = "reading/pdf/" + item.file;
+            editedPdfPath = item.editedFile ? "reading/edited/" + item.editedFile : null;
+            document.getElementById("pdfReview").src = originalPdfPath;
           }
         })
         .catch(function () {});
+    }
+
+    var btnOriginal = document.getElementById("btnOriginal");
+    var btnEdited = document.getElementById("btnEdited");
+    if (btnOriginal) {
+      btnOriginal.addEventListener("click", function () {
+        if (originalPdfPath) {
+          document.getElementById("pdfReview").src = originalPdfPath;
+          btnOriginal.classList.add("active");
+          if (btnEdited) btnEdited.classList.remove("active");
+        }
+      });
+    }
+    if (btnEdited) {
+      btnEdited.addEventListener("click", function () {
+        if (editedPdfPath) {
+          document.getElementById("pdfReview").src = editedPdfPath;
+          btnEdited.classList.add("active");
+          if (btnOriginal) btnOriginal.classList.remove("active");
+        } else {
+          console.log(originalPdfPath);
+        }
+      });
     }
 
     function renderAnswers(data) {
@@ -111,22 +162,76 @@
         else if(ans.allOf)correctText=ans.allOf.join(" + ");
         else if(ans.answer)correctText=ans.answer;
         else correctText="(no answer)";
-        var userResp=userData[ans.number];
-        var userText="";
-        if(userResp){ if(Array.isArray(userResp)) userText=userResp.join(" / "); else userText=userResp; }
-        var correct=false;
-        if(ans.acceptableAnswers){
-          if(userResp){
-            if(Array.isArray(userResp)) correct=userResp.some(r=>ans.acceptableAnswers.includes(r));
-            else correct=ans.acceptableAnswers.includes(userResp);
+        var userResp = userData[ans.number];
+        var userText = "";
+
+        if (userResp) {
+          if (Array.isArray(userResp)) {
+            userResp = userResp.map(v => v.toUpperCase().trim());
+            userText = userResp.join(" / ");
+          } else {
+            userResp = userResp.toUpperCase().trim();
+            userText = userResp;
           }
-        } else if(ans.allOf){
-          if(Array.isArray(userResp)) correct=ans.allOf.every(v=>userResp.includes(v));
-        } else if(ans.answer){
-          if(userResp){
-            if(Array.isArray(userResp)) correct=userResp.includes(ans.answer);
-            else correct=userResp===ans.answer;
+        }
+
+        var correct = false;
+        var pairedResp = ans.pairedWith ? userData[ans.pairedWith] : null;
+
+        if (pairedResp) {
+          if (Array.isArray(pairedResp)) {
+            pairedResp = pairedResp.map(v => v.toUpperCase().trim());
+          } else {
+            pairedResp = pairedResp.toUpperCase().trim();
           }
+        }
+
+        if (ans.acceptableAnswers) {
+
+          var acceptable = ans.acceptableAnswers.map(v => v.toUpperCase());
+
+          if (userResp) {
+
+            if (Array.isArray(userResp)) {
+              correct = userResp.some(r => acceptable.includes(r));
+            } else {
+              correct = acceptable.includes(userResp);
+            }
+
+            // paired question must have different answer
+            if (correct && ans.pairedWith && pairedResp) {
+
+              if (Array.isArray(userResp) || Array.isArray(pairedResp)) {
+                if (JSON.stringify(userResp) === JSON.stringify(pairedResp)) {
+                  correct = false;
+                }
+              } else {
+                if (userResp === pairedResp) {
+                  correct = false;
+                }
+              }
+
+            }
+          }
+
+        } else if (ans.allOf) {
+
+          if (Array.isArray(userResp)) {
+            correct = ans.allOf.every(v => userResp.includes(v.toUpperCase()));
+          }
+
+        } else if (ans.answer) {
+
+          var correctAns = ans.answer.toUpperCase();
+
+          if (userResp) {
+            if (Array.isArray(userResp)) {
+              correct = userResp.includes(correctAns);
+            } else {
+              correct = userResp === correctAns;
+            }
+          }
+
         }
         if(correct){ correctCount++; div.appendChild(document.createTextNode(correctText+" ✅")); }
         else { div.classList.add('incorrect-line'); var txt=document.createTextNode((userText||"(no answer)")+" – "); div.appendChild(txt); var bold=document.createElement('strong'); bold.textContent=correctText; div.appendChild(bold); }

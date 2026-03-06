@@ -2,13 +2,29 @@
   {
     "id": "50",
     "file": "50.pdf",
+    "editedFile": "50.pdf",
     "title": "50",
     "timeLimit": 1500
   },
   {
     "id": "138",
     "file": "138.pdf",
+    "editedFile": "138.pdf",
     "title": "138",
     "timeLimit": 1500
+  },
+  {
+    "id": "139",
+    "file": "139.pdf",
+    "editedFile": "139.pdf",
+    "title": "139",
+    "timeLimit": 2100
+  },
+  {
+    "id": "140",
+    "file": "140.pdf",
+    "editedFile": "140.pdf",
+    "title": "140",
+    "timeLimit": 2100
   }
 ]
