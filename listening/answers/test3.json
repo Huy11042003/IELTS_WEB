@@ -1,0 +1,50 @@
+{
+  "id": "test3",
+  "title": "Listening Test 3",
+  "answers": [
+    { "number": 1, "acceptableAnswers": ["answering phone", "ANSWERING PHONE", "answer phone", "ANSWER PHONE"] },
+    { "number": 2, "acceptableAnswers": ["Hillsdunne road", "HILLSDUNNE ROAD"] },
+    { "number": 3, "acceptableAnswers": ["library", "LIBRARY"] },
+    { "number": 4, "acceptableAnswers": ["4.45"] },
+    { "number": 5, "acceptableAnswers": ["national holidays", "NATIONAL HOLIDAYS"] },
+    { "number": 6, "acceptableAnswers": ["after 11 o'clock", "AFTER 11 O'CLOCK"] },
+    { "number": 7, "acceptableAnswers": ["clear voice", "CLEAR VOICE"] },
+    { "number": 8, "acceptableAnswers": ["think quickly", "THINK QUICKLY"] },
+    { "number": 9, "acceptableAnswers": ["22 october", "22 OCTOBER"] },
+    { "number": 10, "acceptableAnswers": ["Manuja", "MANUJA"] },
+
+    { "number": 11, "acceptableAnswers": ["branch", "BRANCH"] },
+    { "number": 12, "acceptableAnswers": ["west", "WEST"] },
+    { "number": 13, "acceptableAnswers": ["clothing", "CLOTHING"] },
+    { "number": 14, "acceptableAnswers": ["10"] },
+    { "number": 15, "acceptableAnswers": ["running", "RUNNING"] },
+    { "number": 16, "acceptableAnswers": ["bags", "BAGS"] },
+
+    { "number": 17, "acceptableAnswers": ["A"] },
+    { "number": 18, "acceptableAnswers": ["A"] },
+    { "number": 19, "acceptableAnswers": ["A", "E"]},
+    { "number": 20, "acceptableAnswers": ["A", "E"]},
+
+    { "number": 21, "acceptableAnswers": ["B"] },
+    { "number": 22, "acceptableAnswers": ["C"] },
+    { "number": 23, "acceptableAnswers": ["B"] },
+    { "number": 24, "acceptableAnswers": ["A"] },
+    { "number": 25, "acceptableAnswers": ["C"] },
+    { "number": 26, "acceptableAnswers": ["B"] },
+    { "number": 27, "acceptableAnswers": ["A"] },
+    { "number": 28, "acceptableAnswers": ["B"] },
+    { "number": 29, "acceptableAnswers": ["C"] },
+    { "number": 30, "acceptableAnswers": ["B"] },
+
+    { "number": 31, "acceptableAnswers": ["tide", "TIDE", "tides", "TIDES"] },
+    { "number": 32, "acceptableAnswers": ["hearing", "HEARING", "ear", "EAR", "ears", "EARS"] },
+    { "number": 33, "acceptableAnswers": ["plants and animals", "PLANTS AND ANIMALS"] },
+    { "number": 34, "acceptableAnswers": ["feeding", "FEEDING"] },
+    { "number": 35, "acceptableAnswers": ["noise", "NOISE", "noises", "NOISES"] },
+    { "number": 36, "acceptableAnswers": ["healthy", "HEALTHY"] },
+    { "number": 37, "acceptableAnswers": ["group", "GROUP"] },
+    { "number": 38, "acceptableAnswers": ["social", "SOCIAL"] },
+    { "number": 39, "acceptableAnswers": ["leader", "LEADER"] },
+    { "number": 40, "acceptableAnswers": ["network", "NETWORK", "networks", "NETWORKS"] }
+  ]
+}

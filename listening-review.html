@@ -78,7 +78,7 @@
 
     function loadPdf() {
       if (lastFile) {
-        document.getElementById("pdfReview").src = "listening/" + lastFile;
+        document.getElementById("pdfReview").src = "listening/pdf/" + lastFile;
         return;
       }
       fetch("listening-list.json")
@@ -86,7 +86,7 @@
         .then(function (data) {
           var item = data.find(function (x) { return x.id === testId; });
           if (item) {
-            document.getElementById("pdfReview").src = "listening/" + item.file;
+            document.getElementById("pdfReview").src = "listening/pdf/" + item.file;
           }
         })
         .catch(function () {});
