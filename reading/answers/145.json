@@ -1,0 +1,22 @@
+{
+  "id": "145",
+  "title": "145",
+  "answers": [
+
+    { "number": 27, "acceptableAnswers": ["i"] },
+    { "number": 28, "acceptableAnswers": ["vi"] },
+    { "number": 29, "acceptableAnswers": ["iii"] },
+    { "number": 30, "acceptableAnswers": ["vii"] },
+    { "number": 31, "acceptableAnswers": ["iv"] },
+    { "number": 32, "acceptableAnswers": ["ii"] },
+
+    { "number": 33, "acceptableAnswers": ["farming", "FARMING"] },
+    { "number": 34, "acceptableAnswers": ["sea mammals", "SEA MAMMALS"] },
+    { "number": 35, "acceptableAnswers": ["fish", "FISH"] },
+    { "number": 36, "acceptableAnswers": ["Thule", "THULE"] },
+    { "number": 37, "acceptableAnswers": ["islands", "ISLANDS"] },
+    { "number": 38, "acceptableAnswers": ["nomadic", "NOMADIC"] },
+    { "number": 39, "acceptableAnswers": ["nature", "NATURE"] },
+    { "number": 40, "acceptableAnswers": ["imported", "IMPORTED", "Imported"] }
+  ]
+}
