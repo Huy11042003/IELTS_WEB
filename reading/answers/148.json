@@ -1,0 +1,21 @@
+{
+  "id": "148",
+  "title": "148",
+  "answers": [
+    { "number": 1, "acceptableAnswers": ["A"] },
+    { "number": 2, "acceptableAnswers": ["I"] },
+    { "number": 3, "acceptableAnswers": ["J"] },
+    { "number": 4, "acceptableAnswers": ["E"] },
+    { "number": 5, "acceptableAnswers": ["G"] },
+
+    { "number": 6, "acceptableAnswers": ["YES"] },
+    { "number": 7, "acceptableAnswers": ["NOT GIVEN"] },
+    { "number": 8, "acceptableAnswers": ["NOT GIVEN"] },
+    { "number": 9, "acceptableAnswers": ["NO"] },
+
+    { "number": 10, "acceptableAnswers": ["B"] },
+    { "number": 11, "acceptableAnswers": ["C"] },
+    { "number": 12, "acceptableAnswers": ["D"] },
+    { "number": 13, "acceptableAnswers": ["D"] }
+  ]
+}

@@ -7,6 +7,13 @@
     "timeLimit": 1500
   },
   {
+    "id": "60",
+    "file": "60.pdf",
+    "editedFile": "60.pdf",
+    "title": "60",
+    "timeLimit": 1500
+  },
+  {
     "id": "138",
     "file": "138.pdf",
     "editedFile": "138.pdf",
@@ -32,6 +39,13 @@
     "file": "145.pdf",
     "editedFile": "145.pdf",
     "title": "145",
+    "timeLimit": 2100
+  },
+  {
+    "id": "148",
+    "file": "148.pdf",
+    "editedFile": "148.pdf",
+    "title": "148",
     "timeLimit": 2100
   }
 ]

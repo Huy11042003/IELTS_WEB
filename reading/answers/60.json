@@ -1,0 +1,21 @@
+{
+  "id": "60",
+  "title": "60",
+  "answers": [
+    { "number": 1, "acceptableAnswers": ["B"] },
+    { "number": 2, "acceptableAnswers": ["A"] },
+    { "number": 3, "acceptableAnswers": ["A"] },
+    { "number": 4, "acceptableAnswers": ["E"] },
+    { "number": 5, "acceptableAnswers": ["D"] },
+
+    { "number": 6, "acceptableAnswers": ["phantom", "PHANTOM"] },
+    { "number": 7, "acceptableAnswers": ["echoes", "ECHOES", "obstacles", "OBSTACLES"] },
+    { "number": 8, "acceptableAnswers": ["depth", "DEPTH"] },
+    { "number": 9, "acceptableAnswers": ["submarines", "SUBMARINES"] },
+    { "number": 10, "acceptableAnswers": ["natural selection", "NATURAL SELECTION"] },
+
+    { "number": 11, "acceptableAnswers": ["radio waves", "RADIO WAVES", "echoes", "ECHOES"] },
+    { "number": 12, "acceptableAnswers": ["mathematical theories", "MATHEMATICAL THEORIES"] },
+    { "number": 13, "acceptableAnswers": ["zoologist", "ZOOLOGIST"] }
+  ]
+}
