@@ -1,0 +1,51 @@
+{
+  "id": "test5",
+  "title": "Listening Test 5",
+  "answers": [
+    { "number": 1, "acceptableAnswers": ["central", "CENTRAL"] },
+    { "number": 2, "acceptableAnswers": ["600"] },
+    { "number": 3, "acceptableAnswers": ["2 years", "2 YEARS"] },
+    { "number": 4, "acceptableAnswers": ["garage", "GARAGE"] },
+    { "number": 5, "acceptableAnswers": ["garden", "GARDEN"] },
+    { "number": 6, "acceptableAnswers": ["study", "STUDY"] },
+    { "number": 7, "acceptableAnswers": ["noisy", "NOISY"] },
+    { "number": 8, "acceptableAnswers": ["595"] },
+
+    { "number": 9, "acceptableAnswers": ["B"] },
+    { "number": 10, "acceptableAnswers": ["E"] },
+
+    { "number": 11, "acceptableAnswers": ["classical music concerts", "CLASSICAL MUSIC CONCERTS"] },
+    { "number": 12, "acceptableAnswers": ["bookshop", "BOOKSHOP"] },
+    { "number": 13, "acceptableAnswers": ["planned", "PLANNED"] },
+    { "number": 14, "acceptableAnswers": ["1983"] },
+    { "number": 15, "acceptableAnswers": ["city council", "CITY COUNCIL"] },
+    { "number": 16, "acceptableAnswers": ["363"] },
+    { "number": 17, "acceptableAnswers": ["garden hall", "GARDEN HALL"] },
+    { "number": 18, "acceptableAnswers": ["three lives", "THREE LIVES"] },
+    { "number": 19, "acceptableAnswers": ["4.50"] },
+    { "number": 20, "acceptableAnswers": ["faces of China", "FACES OF CHINA"] },
+
+    { "number": 21, "acceptableAnswers": ["C"] },
+    { "number": 22, "acceptableAnswers": ["C"] },
+    { "number": 23, "acceptableAnswers": ["A"] },
+    { "number": 24, "acceptableAnswers": ["B"] },
+    { "number": 25, "acceptableAnswers": ["C"] },
+    { "number": 26, "acceptableAnswers": ["A"] },
+    { "number": 27, "acceptableAnswers": ["C"] },
+    { "number": 28, "acceptableAnswers": ["A"] },
+    { "number": 29, "acceptableAnswers": ["B"] },
+    { "number": 30, "acceptableAnswers": ["C"] },
+
+    { "number": 31, "acceptableAnswers": ["B"] },
+    { "number": 32, "acceptableAnswers": ["B"] },
+    { "number": 33, "acceptableAnswers": ["B"] },
+    { "number": 34, "acceptableAnswers": ["A"] },
+
+    { "number": 35, "acceptableAnswers": ["combination", "COMBINATION", "system", "SYSTEM"] },
+    { "number": 36, "acceptableAnswers": ["safety", "SAFETY"] },
+    { "number": 37, "acceptableAnswers": ["attitude", "ATTITUDE"] },
+    { "number": 38, "acceptableAnswers": ["control", "CONTROL"] },
+    { "number": 39, "acceptableAnswers": ["factory", "FACTORY"] },
+    { "number": 40, "acceptableAnswers": ["skills", "SKILLS"] }
+  ]
+}
