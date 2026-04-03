@@ -1,0 +1,51 @@
+{
+  "id": "test6",
+  "title": "Listening Test 6",
+  "answers": [
+    { "number": 1, "acceptableAnswers": ["John Petterson", "JOHN PETTERSON"] },
+    { "number": 2, "acceptableAnswers": ["12"] },
+    { "number": 3, "acceptableAnswers": ["5"] },
+    { "number": 4, "acceptableAnswers": ["bed and breakfast", "BED AND BREAKFAST"] },
+    { "number": 5, "acceptableAnswers": ["8th June", "8TH JUNE"] },
+
+    { "number": 6, "acceptableAnswers": ["C"] },
+    { "number": 7, "acceptableAnswers": ["E"] },
+    { "number": 8, "acceptableAnswers": ["550"] },
+    { "number": 9, "acceptableAnswers": ["bank transfer", "BANK TRANSFER"] },
+    { "number": 10, "acceptableAnswers": ["Five", "FIVE", "5"] },
+
+    { "number": 11, "acceptableAnswers": ["profits", "PROFITS"] },
+    { "number": 12, "acceptableAnswers": ["grow faster", "GROW FASTER"] },
+    { "number": 13, "acceptableAnswers": ["20 years", "20 YEARS"] },
+    { "number": 14, "acceptableAnswers": ["illegal", "ILLEGAL"] },
+    { "number": 15, "acceptableAnswers": ["200 times", "200 TIMES"] },
+    { "number": 16, "acceptableAnswers": ["imported", "IMPORTED"] },
+    { "number": 17, "acceptableAnswers": ["40%"] },
+    { "number": 18, "acceptableAnswers": ["hormones", "HORMONES", "growth hormones", "GROWTH HORMONES"] },
+    { "number": 19, "acceptableAnswers": ["large stockpile", "LARGE STOCKPILE"] },
+    { "number": 20, "acceptableAnswers": ["a rare form", "A RARE FORM"] },
+
+    { "number": 21, "acceptableAnswers": ["decline", "DECLINE"] },
+    { "number": 22, "acceptableAnswers": ["strict limits", "STRICT LIMITS"] },
+    { "number": 23, "acceptableAnswers": ["a career", "A CAREER"] },
+    { "number": 24, "acceptableAnswers": ["two-thirds", "TWO-THIRDS", "2/3"] },
+    { "number": 25, "acceptableAnswers": ["internal satisfaction", "INTERNAL SATISFACTION"] },
+
+    { "number": 26, "acceptableAnswers": ["C"] },
+    { "number": 27, "acceptableAnswers": ["B"] },
+    { "number": 28, "acceptableAnswers": ["C"] },
+    { "number": 29, "acceptableAnswers": ["A"] },
+    { "number": 30, "acceptableAnswers": ["A"] },
+    { "number": 31, "acceptableAnswers": ["A"] },
+    { "number": 32, "acceptableAnswers": ["C"] },
+    { "number": 33, "acceptableAnswers": ["A"] },
+    { "number": 34, "acceptableAnswers": ["C"] },
+
+    { "number": 35, "acceptableAnswers": ["genetic component", "GENETIC COMPONENT"] },
+    { "number": 36, "acceptableAnswers": ["carbohydrate", "CARBOHYDRATE"] },
+    { "number": 37, "acceptableAnswers": ["soothing", "SOOTHING"] },
+    { "number": 38, "acceptableAnswers": ["winter", "WINTER", "the winter", "THE WINTER"] },
+    { "number": 39, "acceptableAnswers": ["inadequate", "INADEQUATE"] },
+    { "number": 40, "acceptableAnswers": ["hibernations", "HIBERNATIONS"] }
+  ]
+}
