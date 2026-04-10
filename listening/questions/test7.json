@@ -1,56 +1,302 @@
 {
   "id": "test7",
-  "title": "Listening Test 7",
-  "answers": [
-    { "number": 1, "acceptableAnswers": ["C"] },
-    { "number": 2, "acceptableAnswers": ["B"] },
+  "title": "Listening Test",
+  "questions": [
+    {
+      "number": 1,
+      "section": 1,
+      "type": "multiple-choice",
+      "prompt": "Choose the correct letter, A, B or C.",
+      "options": ["A", "B", "C"]
+    },
+    {
+      "number": 2,
+      "section": 1,
+      "type": "multiple-choice",
+      "prompt": "Choose the correct letter, A, B or C.",
+      "options": ["A", "B", "C"]
+    },
 
-    { "number": 3, "acceptableAnswers": ["48 North Avenue", "48 north avenue", "48 NORTH AVENUE"] },
-    { "number": 4, "acceptableAnswers": ["WS62YH"] },
-    { "number": 5, "acceptableAnswers": ["01674553242"] },
+    {
+      "number": 3,
+      "section": 1,
+      "type": "gap-filling",
+      "prompt": "Write NO MORE THAN TWO WORDS OR A NUMBER.",
+      "wordLimit": "NO MORE THAN TWO WORDS OR A NUMBER"
+    },
+    {
+      "number": 4,
+      "section": 1,
+      "type": "gap-filling",
+      "prompt": "Write NO MORE THAN TWO WORDS OR A NUMBER.",
+      "wordLimit": "NO MORE THAN TWO WORDS OR A NUMBER"
+    },
+    {
+      "number": 5,
+      "section": 1,
+      "type": "gap-filling",
+      "prompt": "Write NO MORE THAN TWO WORDS OR A NUMBER.",
+      "wordLimit": "NO MORE THAN TWO WORDS OR A NUMBER"
+    },
+    {
+      "number": 6,
+      "section": 1,
+      "type": "gap-filling",
+      "prompt": "Write NO MORE THAN TWO WORDS OR A NUMBER.",
+      "wordLimit": "NO MORE THAN TWO WORDS OR A NUMBER"
+    },
+    {
+      "number": 7,
+      "section": 1,
+      "type": "gap-filling",
+      "prompt": "Write NO MORE THAN TWO WORDS OR A NUMBER.",
+      "wordLimit": "NO MORE THAN TWO WORDS OR A NUMBER"
+    },
+    {
+      "number": 8,
+      "section": 1,
+      "type": "gap-filling",
+      "prompt": "Write NO MORE THAN TWO WORDS OR A NUMBER.",
+      "wordLimit": "NO MORE THAN TWO WORDS OR A NUMBER"
+    },
+    {
+      "number": 9,
+      "section": 1,
+      "type": "gap-filling",
+      "prompt": "Write NO MORE THAN TWO WORDS OR A NUMBER.",
+      "wordLimit": "NO MORE THAN TWO WORDS OR A NUMBER"
+    },
+    {
+      "number": 10,
+      "section": 1,
+      "type": "gap-filling",
+      "prompt": "Write NO MORE THAN TWO WORDS OR A NUMBER.",
+      "wordLimit": "NO MORE THAN TWO WORDS OR A NUMBER"
+    },
 
-    { "number": 6, "acceptableAnswers": ["drinks", "DRINKS", "refreshments", "REFRESHMENTS", "drinks refreshments", "DRINKS REFRESHMENTS"] },
-    { "number": 7, "acceptableAnswers": ["pianist", "PIANIST", "piano player", "PIANO PLAYER"] },
+    {
+      "number": 11,
+      "section": 2,
+      "type": "gap-filling",
+      "prompt": "Write NO MORE THAN TWO WORDS OR A NUMBER.",
+      "wordLimit": "NO MORE THAN TWO WORDS OR A NUMBER"
+    },
+    {
+      "number": 12,
+      "section": 2,
+      "type": "gap-filling",
+      "prompt": "Write NO MORE THAN TWO WORDS OR A NUMBER.",
+      "wordLimit": "NO MORE THAN TWO WORDS OR A NUMBER"
+    },
+    {
+      "number": 13,
+      "section": 2,
+      "type": "gap-filling",
+      "prompt": "Write NO MORE THAN TWO WORDS OR A NUMBER.",
+      "wordLimit": "NO MORE THAN TWO WORDS OR A NUMBER"
+    },
+    {
+      "number": 14,
+      "section": 2,
+      "type": "gap-filling",
+      "prompt": "Write NO MORE THAN TWO WORDS OR A NUMBER.",
+      "wordLimit": "NO MORE THAN TWO WORDS OR A NUMBER"
+    },
+    {
+      "number": 15,
+      "section": 2,
+      "type": "gap-filling",
+      "prompt": "Write NO MORE THAN TWO WORDS OR A NUMBER.",
+      "wordLimit": "NO MORE THAN TWO WORDS OR A NUMBER"
+    },
 
-    { "number": 8, "acceptableAnswers": ["10.5", "10,5" , "10.50"] },
-    { "number": 9, "acceptableAnswers": ["4"] },
-    { "number": 10, "acceptableAnswers": ["50%"] },
+    {
+      "number": 16,
+      "section": 2,
+      "type": "multiple-choice",
+      "prompt": "Choose THREE letters, A-G.",
+      "options": ["A", "B", "C", "D", "E", "F", "G"],
+      "answersCount": 3
+    },
+    {
+      "number": 17,
+      "section": 2,
+      "type": "multiple-choice",
+      "prompt": "Choose THREE letters, A-G.",
+      "options": ["A", "B", "C", "D", "E", "F", "G"],
+      "answersCount": 3
+    },
+    {
+      "number": 18,
+      "section": 2,
+      "type": "multiple-choice",
+      "prompt": "Choose THREE letters, A-G.",
+      "options": ["A", "B", "C", "D", "E", "F", "G"],
+      "answersCount": 3
+    },
 
-    { "number": 11, "acceptableAnswers": ["1.3", "1,3"] },
-    { "number": 12, "acceptableAnswers": ["25 December", "25 DECEMBER"] },
-    { "number": 13, "acceptableAnswers": ["car parking", "CAR PARKING"] },
-    { "number": 14, "acceptableAnswers": ["45"] },
-    { "number": 15, "acceptableAnswers": ["tables", "TABLES"] },
+    {
+      "number": 19,
+      "section": 2,
+      "type": "multiple-choice",
+      "prompt": "Choose TWO letters, A-E.",
+      "options": ["A", "B", "C", "D", "E"],
+      "answersCount": 2
+    },
+    {
+      "number": 20,
+      "section": 2,
+      "type": "multiple-choice",
+      "prompt": "Choose TWO letters, A-E.",
+      "options": ["A", "B", "C", "D", "E"],
+      "answersCount": 2
+    },
 
-    { "number": 16, "acceptableAnswers": ["C"] },
-    { "number": 17, "acceptableAnswers": ["F"] },
-    { "number": 18, "acceptableAnswers": ["G"] },
-    { "number": 19, "acceptableAnswers": ["B"] },
-    { "number": 20, "acceptableAnswers": ["E"] },
+    {
+      "number": 21,
+      "section": 3,
+      "type": "multiple-choice",
+      "prompt": "Choose the correct letter, A, B or C.",
+      "options": ["A", "B", "C"]
+    },
+    {
+      "number": 22,
+      "section": 3,
+      "type": "multiple-choice",
+      "prompt": "Choose the correct letter, A, B or C.",
+      "options": ["A", "B", "C"]
+    },
+    {
+      "number": 23,
+      "section": 3,
+      "type": "multiple-choice",
+      "prompt": "Choose the correct letter, A, B or C.",
+      "options": ["A", "B", "C"]
+    },
+    {
+      "number": 24,
+      "section": 3,
+      "type": "multiple-choice",
+      "prompt": "Choose the correct letter, A, B or C.",
+      "options": ["A", "B", "C"]
+    },
 
-    { "number": 21, "acceptableAnswers": ["A"] },
-    { "number": 22, "acceptableAnswers": ["C"] },
-    { "number": 23, "acceptableAnswers": ["A"] },
-    { "number": 24, "acceptableAnswers": ["B"] },
-    { "number": 25, "acceptableAnswers": ["B"] },
-    { "number": 26, "acceptableAnswers": ["C"] },
-    { "number": 27, "acceptableAnswers": ["F"] },
+    {
+      "number": 25,
+      "section": 3,
+      "type": "multiple-choice",
+      "prompt": "Choose THREE letters, A-G.",
+      "options": ["A", "B", "C", "D", "E", "F", "G"],
+      "answersCount": 3
+    },
+    {
+      "number": 26,
+      "section": 3,
+      "type": "multiple-choice",
+      "prompt": "Choose THREE letters, A-G.",
+      "options": ["A", "B", "C", "D", "E", "F", "G"],
+      "answersCount": 3
+    },
+    {
+      "number": 27,
+      "section": 3,
+      "type": "multiple-choice",
+      "prompt": "Choose THREE letters, A-G.",
+      "options": ["A", "B", "C", "D", "E", "F", "G"],
+      "answersCount": 3
+    },
 
-    { "number": 28, "acceptableAnswers": ["12000"] },
+    {
+      "number": 28,
+      "section": 3,
+      "type": "gap-filling",
+      "prompt": "Write ONE WORD OR A NUMBER.",
+      "wordLimit": "ONE WORD OR A NUMBER"
+    },
+    {
+      "number": 29,
+      "section": 3,
+      "type": "gap-filling",
+      "prompt": "Write ONE WORD OR A NUMBER.",
+      "wordLimit": "ONE WORD OR A NUMBER"
+    },
+    {
+      "number": 30,
+      "section": 3,
+      "type": "gap-filling",
+      "prompt": "Write ONE WORD OR A NUMBER.",
+      "wordLimit": "ONE WORD OR A NUMBER"
+    },
 
-    { "number": 29, "acceptableAnswers": ["horses", "HORSES"] },
-    { "number": 30, "acceptableAnswers": ["caves", "CAVES"] },
-
-    { "number": 31, "acceptableAnswers": ["surface", "SURFACE"] },
-    { "number": 32, "acceptableAnswers": ["environment", "ENVIRONMENT"] },
-
-    { "number": 33, "acceptableAnswers": ["impact", "IMPACT", "effects", "EFFECTS"] },
-    { "number": 34, "acceptableAnswers": ["urban", "URBAN"] },
-    { "number": 35, "acceptableAnswers": ["problems", "PROBLEMS"] },
-    { "number": 36, "acceptableAnswers": ["images", "IMAGES"] },
-    { "number": 37, "acceptableAnswers": ["patterns", "PATTERNS"] },
-    { "number": 38, "acceptableAnswers": ["distortion", "DISTORTION"] },
-    { "number": 39, "acceptableAnswers": ["traffic", "TRAFFIC"] },
-    { "number": 40, "acceptableAnswers": ["weather", "WEATHER"] }
+    {
+      "number": 31,
+      "section": 4,
+      "type": "gap-filling",
+      "prompt": "Write ONE WORD ONLY.",
+      "wordLimit": "ONE WORD ONLY"
+    },
+    {
+      "number": 32,
+      "section": 4,
+      "type": "gap-filling",
+      "prompt": "Write ONE WORD ONLY.",
+      "wordLimit": "ONE WORD ONLY"
+    },
+    {
+      "number": 33,
+      "section": 4,
+      "type": "gap-filling",
+      "prompt": "Write ONE WORD ONLY.",
+      "wordLimit": "ONE WORD ONLY"
+    },
+    {
+      "number": 34,
+      "section": 4,
+      "type": "gap-filling",
+      "prompt": "Write ONE WORD ONLY.",
+      "wordLimit": "ONE WORD ONLY"
+    },
+    {
+      "number": 35,
+      "section": 4,
+      "type": "gap-filling",
+      "prompt": "Write ONE WORD ONLY.",
+      "wordLimit": "ONE WORD ONLY"
+    },
+    {
+      "number": 36,
+      "section": 4,
+      "type": "gap-filling",
+      "prompt": "Write ONE WORD ONLY.",
+      "wordLimit": "ONE WORD ONLY"
+    },
+    {
+      "number": 37,
+      "section": 4,
+      "type": "gap-filling",
+      "prompt": "Write ONE WORD ONLY.",
+      "wordLimit": "ONE WORD ONLY"
+    },
+    {
+      "number": 38,
+      "section": 4,
+      "type": "gap-filling",
+      "prompt": "Write ONE WORD ONLY.",
+      "wordLimit": "ONE WORD ONLY"
+    },
+    {
+      "number": 39,
+      "section": 4,
+      "type": "gap-filling",
+      "prompt": "Write ONE WORD ONLY.",
+      "wordLimit": "ONE WORD ONLY"
+    },
+    {
+      "number": 40,
+      "section": 4,
+      "type": "gap-filling",
+      "prompt": "Write ONE WORD ONLY.",
+      "wordLimit": "ONE WORD ONLY"
+    }
   ]
 }
