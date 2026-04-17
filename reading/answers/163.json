@@ -1,0 +1,20 @@
+{
+  "id": "163",
+  "title": "163",
+  "answers": [
+    { "number": 27, "acceptableAnswers": ["D"] },
+    { "number": 28, "acceptableAnswers": ["E"] },
+    { "number": 29, "acceptableAnswers": ["C"] },
+    { "number": 30, "acceptableAnswers": ["D"] },
+    { "number": 31, "acceptableAnswers": ["F"] },
+    { "number": 32, "acceptableAnswers": ["linguist", "the linguist", "the linguist acts", "linguist acts"] },
+    { "number": 33, "acceptableAnswers": ["foreign language"] },
+    { "number": 34, "acceptableAnswers": ["quality", "the quality", "the poor quality"] },
+    { "number": 35, "acceptableAnswers": ["non-verbal behavior", "non-verbal behaviour", "facial expression", "facial expressions"] },
+    { "number": 36, "acceptableAnswers": ["camera", "video camera", "recording", "video recording"] },
+    { "number": 37, "acceptableAnswers": ["frequency of usages", "usage frequency"] },
+    { "number": 38, "acceptableAnswers": ["particular linguistic feature"] },
+    { "number": 39, "acceptableAnswers": ["size"] },
+    { "number": 40, "acceptableAnswers": ["intuitions"] }
+  ]
+}
