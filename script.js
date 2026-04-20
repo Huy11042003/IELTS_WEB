@@ -136,6 +136,9 @@ function startTimer(seconds) {
     if (timeRemaining <= 0) {
       clearInterval(timerInterval);
       alert("Time is up!");
+      if (submitButton && !submitButton.disabled) {
+        submitButton.click(); // auto submit
+      }
     }
 
     updateTimerDisplay();
@@ -159,7 +162,7 @@ var QUESTION_TYPE_LABELS = {
 };
 
 function renderQuestions(test) {
-  questionArea.innerHTML = "";
+  questionArea.innerHTML = "Loading questions...";
   questionNav.innerHTML = "";
 
   if (!test || !Array.isArray(test.questions) || test.questions.length === 0) {

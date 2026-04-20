@@ -2,18 +2,18 @@
   "id": "186",
   "title": "186 Answers",
   "answers": [
-    { "number": 28, "acceptableAnswers": ["B"] },
-    { "number": 29, "acceptableAnswers": ["C"] },
-    { "number": 30, "acceptableAnswers": ["C"] },
-    { "number": 31, "acceptableAnswers": ["A"] },
-    { "number": 32, "acceptableAnswers": ["TRUE"] },
-    { "number": 33, "acceptableAnswers": ["NOT GIVEN"] },
-    { "number": 34, "acceptableAnswers": ["TRUE"] },
-    { "number": 35, "acceptableAnswers": ["clay loam", "CLAY LOAM", "clay loam soil", "CLAY LOAM SOIL"] },
-    { "number": 36, "acceptableAnswers": ["pests", "PESTS"] },
-    { "number": 37, "acceptableAnswers": ["a decent crop", "good economic yields", "A DECENT CROP", "GOOD ECONOMIC YIELDS"] },
-    { "number": 38, "acceptableAnswers": ["paste", "PASTE"] },
-    { "number": 39, "acceptableAnswers": ["hydraulic press frame", "HYDRAULIC PRESS FRAME", "hydraulic press", "HYDRAULIC PRESS"] },
-    { "number": 40, "acceptableAnswers": ["centrifuge", "CENTRIFUGE"] }
+    { "number": 1, "acceptableAnswers": ["B"] },
+    { "number": 2, "acceptableAnswers": ["C"] },
+    { "number": 3, "acceptableAnswers": ["C"] },
+    { "number": 4, "acceptableAnswers": ["A"] },
+    { "number": 5, "acceptableAnswers": ["TRUE"] },
+    { "number": 6, "acceptableAnswers": ["NOT GIVEN"] },
+    { "number": 7, "acceptableAnswers": ["TRUE"] },
+    { "number": 8, "acceptableAnswers": ["clay loam", "CLAY LOAM", "clay loam soil", "CLAY LOAM SOIL"] },
+    { "number": 9, "acceptableAnswers": ["pests", "PESTS"] },
+    { "number": 10, "acceptableAnswers": ["a decent crop", "good economic yields", "A DECENT CROP", "GOOD ECONOMIC YIELDS"] },
+    { "number": 11, "acceptableAnswers": ["paste", "PASTE"] },
+    { "number": 12, "acceptableAnswers": ["hydraulic press frame", "HYDRAULIC PRESS FRAME", "hydraulic press", "HYDRAULIC PRESS"] },
+    { "number": 13, "acceptableAnswers": ["centrifuge", "CENTRIFUGE"] }
   ]
 }
