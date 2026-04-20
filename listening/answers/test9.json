@@ -1,0 +1,51 @@
+{
+  "id": "test9",
+  "title": "Listening Test 9",
+  "answers": [
+    { "number": 1, "acceptableAnswers": ["business", "BUSINESS"] },
+    { "number": 2, "acceptableAnswers": ["third", "THIRD"] },
+    { "number": 3, "acceptableAnswers": ["sports centre", "SPORTS CENTRE"] },
+    { "number": 4, "acceptableAnswers": ["cleaner", "CLEANER"] },
+    { "number": 5, "acceptableAnswers": ["library", "LIBRARY"] },
+    { "number": 6, "acceptableAnswers": ["international house", "INTERNATIONAL HOUSE"] },
+    { "number": 7, "acceptableAnswers": ["B659"] },
+    { "number": 8, "acceptableAnswers": ["office assistant", "OFFICE ASSISTANT"] },
+    { "number": 9, "acceptableAnswers": ["answer phone", "ANSWER PHONE"] },
+    { "number": 10, "acceptableAnswers": ["11.3", "11.30"] },
+
+    { "number": 11, "acceptableAnswers": ["B"] },
+    { "number": 12, "acceptableAnswers": ["C"] },
+    { "number": 13, "acceptableAnswers": ["A"] },
+    { "number": 14, "acceptableAnswers": ["C"] },
+    { "number": 15, "acceptableAnswers": ["B"] },
+    { "number": 16, "acceptableAnswers": ["A"] },
+
+    { "number": 17, "acceptableAnswers": ["forest", "FOREST"] },
+    { "number": 18, "acceptableAnswers": ["temple", "TEMPLE"] },
+    { "number": 19, "acceptableAnswers": ["waterfall", "WATERFALL"] },
+    { "number": 20, "acceptableAnswers": ["village", "VILLAGE"] },
+
+    { "number": 21, "acceptableAnswers": ["cigar", "CIGAR"] },
+    { "number": 22, "acceptableAnswers": ["13 countries", "13 COUNTRIES"] },
+    { "number": 23, "acceptableAnswers": ["activated", "ACTIVATED"] },
+    { "number": 24, "acceptableAnswers": ["50km", "50 KM"] },
+    { "number": 25, "acceptableAnswers": ["temperature", "TEMPERATURE"] },
+
+    { "number": 26, "acceptableAnswers": ["A"] },
+    { "number": 27, "acceptableAnswers": ["C"] },
+    { "number": 28, "acceptableAnswers": ["A"] },
+    { "number": 29, "acceptableAnswers": ["B"] },
+    { "number": 30, "acceptableAnswers": ["C"] },
+    { "number": 31, "acceptableAnswers": ["B"] },
+    { "number": 32, "acceptableAnswers": ["B"] },
+    { "number": 33, "acceptableAnswers": ["A"] },
+    { "number": 34, "acceptableAnswers": ["C"] },
+
+    { "number": 35, "acceptableAnswers": ["business", "BUSINESS"] },
+    { "number": 36, "acceptableAnswers": ["kitchen", "KITCHEN"] },
+    { "number": 37, "acceptableAnswers": ["world", "WORLD"] },
+    { "number": 38, "acceptableAnswers": ["escape", "ESCAPE"] },
+    { "number": 39, "acceptableAnswers": ["baby", "BABY"] },
+    { "number": 40, "acceptableAnswers": ["chocolate", "CHOCOLATE"] }
+  ]
+}
