@@ -25,34 +25,41 @@
     "file": "139.pdf",
     "editedFile": "139.pdf",
     "title": "139",
-    "timeLimit": 2100
+    "timeLimit": 1200
   },
   {
     "id": "140",
     "file": "140.pdf",
     "editedFile": "140.pdf",
     "title": "140",
-    "timeLimit": 2100
+    "timeLimit": 1200
   },
   {
     "id": "145",
     "file": "145.pdf",
     "editedFile": "145.pdf",
     "title": "145",
-    "timeLimit": 2100
+    "timeLimit": 1200
   },
   {
     "id": "148",
     "file": "148.pdf",
     "editedFile": "148.pdf",
     "title": "148",
-    "timeLimit": 2100
+    "timeLimit": 1200
   },
   {
     "id": "163",
     "file": "163.pdf",
     "editedFile": "163.pdf",
     "title": "163",
-    "timeLimit": 2100
+    "timeLimit": 1200
+  },
+  {
+    "id": "186",
+    "file": "186.pdf",
+    "editedFile": "186.pdf",
+    "title": "186",
+    "timeLimit": 1200
   }
 ]

@@ -1,0 +1,94 @@
+{"id": "186",
+  "title": "186",
+  "questions": [
+  {
+    "number": 1,
+    "type": "multiple-choice",
+    "prompt": "Choose the correct letters A, B, C or D.",
+    "options": [
+        "A",
+        "B",
+        "C",
+        "D"
+        ]
+  },
+  {
+    "number": 2,
+    "type": "multiple-choice",
+    "prompt": "Choose the correct letters A, B, C or D.",
+    "options": [
+        "A",
+        "B",
+        "C",
+        "D"
+        ]
+  },
+  {
+    "number": 3,
+    "type": "multiple-choice",
+    "prompt": "Choose the correct letters A, B, C or D.",
+    "options": [
+        "A",
+        "B",
+        "C",
+        "D"
+        ]
+  },
+  {
+    "number": 4,
+    "type": "multiple-choice",
+    "prompt": "Choose the correct letters A, B, C or D.",
+    "options": [
+        "A",
+        "B",
+        "C",
+        "D"
+        ]
+  },
+  {
+    "number": 5,
+    "type": "true-false-not-given",
+    "prompt": "TRUE / FALSE / NOT GIVEN."
+  },
+  {
+    "number": 6,
+    "type": "true-false-not-given",
+    "prompt": "TRUE / FALSE / NOT GIVEN."
+  },
+
+  {
+    "number": 7,
+    "type": "true-false-not-given",
+    "prompt": "TRUE / FALSE / NOT GIVEN."
+  },
+  {
+    "number": 8,
+    "type": "gap-filling",
+    "prompt": "Choose NO MORE THAN THREE WORDS.",
+    "wordLimit": "NO MORE THAN THREE WORDS"
+  },
+  {
+    "number": 9,
+   "type": "gap-filling",
+    "prompt": "Choose NO MORE THAN THREE WORDS.",
+    "wordLimit": "NO MORE THAN THREE WORDS"
+  },
+  {
+    "number": 10,
+    "type": "gap-filling",
+    "prompt": "Choose NO MORE THAN THREE WORDS.",
+    "wordLimit": "NO MORE THAN THREE WORDS"
+  },
+  {
+    "number": 12,
+    "type": "gap-filling",
+    "prompt": "Choose NO MORE THAN THREE WORDS.",
+    "wordLimit": "NO MORE THAN THREE WORDS"
+  },
+  {
+    "number": 13,
+    "type": "gap-filling",
+    "prompt": "Choose NO MORE THAN THREE WORDS.",
+    "wordLimit": "NO MORE THAN THREE WORDS"
+  }
+]}
