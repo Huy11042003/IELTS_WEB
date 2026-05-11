@@ -53,6 +53,26 @@
     <iframe id="pdfReview" class="review-iframe"></iframe>
   </div>
   <div class="review-right">
+    <div class="review-audio-box">
+      <audio
+        id="reviewAudio"
+        controls
+        preload="metadata"
+        style="width:100%; margin-bottom:12px;">
+      </audio>
+
+      <div class="review-speed-row">
+        <label for="playbackSpeed">Speed:</label>
+
+        <select id="playbackSpeed">
+          <option value="0.75">0.75x</option>
+          <option value="1" selected>1x</option>
+          <option value="1.25">1.25x</option>
+          <option value="1.5">1.5x</option>
+          <option value="2">2x</option>
+        </select>
+      </div>
+    </div>
     <p style="font-size:13px;color:#555;margin-top:0;">
       Review the recording script or questions below and compare with the answers.
     </p>
@@ -75,6 +95,7 @@
 
     var testId = getQueryParam("test") || localStorage.getItem("listening_lastTestId") || "";
     var lastFile = localStorage.getItem("listening_lastFile");
+    var reviewAudio = document.getElementById("reviewAudio");
 
     function loadPdf() {
       if (lastFile) {
@@ -92,6 +113,38 @@
         .catch(function () {});
     }
 
+    function loadAudio() {
+      fetch("listening-list.json")
+        .then(function (res) {
+          return res.json();
+        })
+        .then(function (data) {
+
+          var item = data.find(function (x) {
+            return x.id === testId;
+          });
+
+          if (!item) return;
+
+          if (item.audioUrl) {
+            reviewAudio.src = item.audioUrl;
+          } else if (item.audio) {
+            reviewAudio.src = "listening/audio/" + item.audio;
+          }
+
+        })
+        .catch(function () {});
+    }
+    var speedControl = document.getElementById("playbackSpeed");
+
+    if (speedControl) {
+      speedControl.addEventListener("change", function () {
+        if (reviewAudio) {
+          reviewAudio.playbackRate =
+            parseFloat(this.value);
+        }
+      });
+    }
     function renderAnswers(data) {
       var container = document.getElementById("answersList");
       container.innerHTML = "";
@@ -193,6 +246,7 @@
     }
 
     loadPdf();
+    loadAudio();
     loadAnswers();
   })();
 </script>
