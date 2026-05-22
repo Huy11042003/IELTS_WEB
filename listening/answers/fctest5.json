@@ -1,0 +1,52 @@
+{
+  "id": "test14",
+  "title": "Listening Test 14",
+  "answers": [
+    { "number": 1, "acceptableAnswers": ["South West", "SOUTH WEST"] },
+    { "number": 2, "acceptableAnswers": ["double", "DOUBLE"] },
+    { "number": 3, "acceptableAnswers": ["office", "OFFICE"] },
+    { "number": 4, "acceptableAnswers": ["lounge", "LOUNGE"] },
+
+    { "number": 5, "acceptableAnswers": ["A"] },
+    { "number": 6, "acceptableAnswers": ["B"] },
+    { "number": 7, "acceptableAnswers": ["B"] },
+
+    { "number": 8, "acceptableAnswers": ["Amies", "AMIES"] },
+    { "number": 9, "acceptableAnswers": ["Thursday", "THURSDAY"] },
+    { "number": 10, "acceptableAnswers": ["3 hours", "3 HOURS"] },
+
+    { "number": 11, "acceptableAnswers": ["C"] },
+    { "number": 12, "acceptableAnswers": ["A"] },
+    { "number": 13, "acceptableAnswers": ["C"] },
+    { "number": 14, "acceptableAnswers": ["A"] },
+    { "number": 15, "acceptableAnswers": ["B"] },
+    { "number": 16, "acceptableAnswers": ["B"] },
+    { "number": 17, "acceptableAnswers": ["D"] },
+    { "number": 18, "acceptableAnswers": ["C"] },
+    { "number": 19, "acceptableAnswers": ["A"] },
+    { "number": 20, "acceptableAnswers": ["H"] },
+
+    { "number": 21, "acceptableAnswers": ["B"] },
+    { "number": 22, "acceptableAnswers": ["C"] },
+    { "number": 23, "acceptableAnswers": ["C"] },
+
+    { "number": 24, "acceptableAnswers": ["teaching", "TEACHING"] },
+    { "number": 25, "acceptableAnswers": ["numbers", "NUMBERS"] },
+    { "number": 26, "acceptableAnswers": ["applications", "APPLICATIONS"] },
+    { "number": 27, "acceptableAnswers": ["talent", "TALENT"] },
+    { "number": 28, "acceptableAnswers": ["observation", "OBSERVATION"] },
+    { "number": 29, "acceptableAnswers": ["whole", "WHOLE"] },
+    { "number": 30, "acceptableAnswers": ["reading", "READING"] },
+
+    { "number": 31, "acceptableAnswers": ["plants", "PLANTS"] },
+    { "number": 32, "acceptableAnswers": ["spines", "SPINES"] },
+    { "number": 33, "acceptableAnswers": ["pest", "PEST"] },
+    { "number": 34, "acceptableAnswers": ["Asia", "ASIA"] },
+    { "number": 35, "acceptableAnswers": ["decline", "DECLINE"] },
+    { "number": 36, "acceptableAnswers": ["200 years", "200 YEARS"] },
+    { "number": 37, "acceptableAnswers": ["0.1 cm", "0.1CM"] },
+    { "number": 38, "acceptableAnswers": ["aging", "AGING"] },
+    { "number": 39, "acceptableAnswers": ["breed", "BREED"] },
+    { "number": 40, "acceptableAnswers": ["ocean conditions", "OCEAN CONDITIONS"] }
+  ]
+}
