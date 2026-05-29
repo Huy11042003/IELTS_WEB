@@ -1,0 +1,19 @@
+{
+  "id": "fc2",
+  "title": "fc2",
+  "answers": [
+    { "number": 1, "acceptableAnswers": [""] },
+    { "number": 2, "acceptableAnswers": [""] },
+    { "number": 3, "acceptableAnswers": [""] },
+    { "number": 4, "acceptableAnswers": [""] },
+    { "number": 5, "acceptableAnswers": [""] },
+    { "number": 6, "acceptableAnswers": [""] },
+    { "number": 7, "acceptableAnswers": [""] },
+    { "number": 8, "acceptableAnswers": [""] },
+    { "number": 9, "acceptableAnswers": [""] },
+    { "number": 10, "acceptableAnswers": [""] },
+    { "number": 11, "acceptableAnswers": [""] },
+    { "number": 12, "acceptableAnswers": [""] },
+    { "number": 13, "acceptableAnswers": [""] }
+  ]
+}
