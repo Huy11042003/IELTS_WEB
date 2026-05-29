@@ -8,7 +8,7 @@
     { "number": 4, "acceptableAnswers": ["drinking", "DRINKING"] },
     { "number": 5, "acceptableAnswers": ["electricity", "ELECTRICITY"] },
     { "number": 6, "acceptableAnswers": ["office", "OFFICE"] },
-    { "number": 7, "acceptableAnswers": ["K Stone", "K STONE", "K-Stone", "K-STONE"] },
+    { "number": 7, "acceptableAnswers": ["Kaistone", "KAISTONE"] },
     { "number": 8, "acceptableAnswers": ["sand", "SAND"] },
     { "number": 9, "acceptableAnswers": ["lake", "LAKE"] },
     { "number": 10, "acceptableAnswers": ["mine", "MINE"] },
