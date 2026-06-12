@@ -1,0 +1,38 @@
+{
+  "id": "fctest10",
+  "title": "FC Listening Test 10",
+  "answers": [
+    { "number": 1, "acceptableAnswers": ["285"] },
+    { "number": 2, "acceptableAnswers": ["parking", "PARKING"] },
+    { "number": 3, "acceptableAnswers": ["September", "SEPTEMBER"] },
+    { "number": 4, "acceptableAnswers": ["roof", "ROOF"] },
+    { "number": 5, "acceptableAnswers": ["orientation", "ORIENTATION"] },
+    { "number": 6, "acceptableAnswers": ["TV"] },
+    { "number": 7, "acceptableAnswers": ["judo", "JUDO"] },
+    { "number": 8, "acceptableAnswers": ["yoga", "YOGA"] },
+    { "number": 9, "acceptableAnswers": ["intermediate", "INTERMEDIATE"] },
+
+    { "number": 21, "acceptableAnswers": ["C", "D"] },
+    { "number": 22, "acceptableAnswers": ["D", "C"] },
+    { "number": 23, "acceptableAnswers": ["C", "E"] },
+    { "number": 24, "acceptableAnswers": ["E", "C"] },
+    { "number": 25, "acceptableAnswers": ["C", "A"] },
+    { "number": 26, "acceptableAnswers": ["A", "C"] },
+
+    { "number": 27, "acceptableAnswers": ["B"] },
+    { "number": 28, "acceptableAnswers": ["E"] },
+    { "number": 29, "acceptableAnswers": ["G"] },
+    { "number": 30, "acceptableAnswers": ["A"] },
+
+    { "number": 31, "acceptableAnswers": ["cliffs", "CLIFFS"] },
+    { "number": 32, "acceptableAnswers": ["transport", "TRANSPORT"] },
+    { "number": 33, "acceptableAnswers": ["spring", "SPRING"] },
+    { "number": 34, "acceptableAnswers": ["rural", "RURAL"] },
+    { "number": 35, "acceptableAnswers": ["40%"] },
+    { "number": 36, "acceptableAnswers": ["Scotland", "SCOTLAND"] },
+    { "number": 37, "acceptableAnswers": ["candle", "CANDLE"] },
+    { "number": 38, "acceptableAnswers": ["lock", "LOCK"] },
+    { "number": 39, "acceptableAnswers": ["accidents", "ACCIDENTS"] },
+    { "number": 40, "acceptableAnswers": ["water", "WATER"] }
+  ]
+}
