@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Select Listening Test</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+
+        .header {
+            background: #1976d2;
+            color: white;
+            padding: 16px 24px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 24px auto;
+            padding: 0 20px;
+        }
+
+        .search-box {
+            margin-bottom: 20px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        .test-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .test-card {
+            background: white;
+            border-radius: 8px;
+            padding: 16px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            transition: 0.2s;
+        }
+
+        .test-card:hover {
+            border-color: #1976d2;
+            box-shadow: 0 2px 8px rgba(0,0,0,.1);
+        }
+
+        .test-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .test-id {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .empty {
+            text-align: center;
+            color: #777;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    IELTS Listening Practice
+</div>
+
+<div class="container">
+
+    <div class="search-box">
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search test..."
+        >
+    </div>
+
+    <div id="testList" class="test-list">
+        <div class="empty">Loading tests...</div>
+    </div>
+
+</div>
+
+<script>
+
+let allTests = [];
+
+function renderTests(tests) {
+
+    const container = document.getElementById("testList");
+
+    container.innerHTML = "";
+
+    if (!tests.length) {
+        container.innerHTML =
+            '<div class="empty">No tests found</div>';
+        return;
+    }
+
+    tests.forEach(test => {
+
+        const card = document.createElement("div");
+
+        card.className = "test-card";
+
+        card.innerHTML = `
+            <div class="test-title">
+                ${test.title || test.id}
+            </div>
+
+            <div class="test-id">
+                ${test.id}
+            </div>
+        `;
+
+        card.addEventListener("click", function() {
+
+            localStorage.setItem(
+                "listening_lastTestId",
+                test.id
+            );
+
+            window.location.href =
+                "select-part.html?test=" +
+                encodeURIComponent(test.id);
+        });
+
+        container.appendChild(card);
+    });
+}
+
+function filterTests(keyword) {
+
+    keyword = keyword
+        .toLowerCase()
+        .trim();
+
+    const filtered = allTests.filter(test => {
+
+        const title =
+            (test.title || "")
+            .toLowerCase();
+
+        const id =
+            (test.id || "")
+            .toLowerCase();
+
+        return title.includes(keyword)
+            || id.includes(keyword);
+    });
+
+    renderTests(filtered);
+}
+
+fetch("listening-list.json")
+    .then(res => res.json())
+    .then(data => {
+
+        allTests = data;
+
+        renderTests(allTests);
+    })
+    .catch(err => {
+
+        console.error(err);
+
+        document.getElementById("testList").innerHTML =
+            '<div class="empty">Unable to load tests</div>';
+    });
+
+document
+    .getElementById("searchInput")
+    .addEventListener("input", function() {
+
+        filterTests(this.value);
+    });
+
+</script>
+
+</body>
+</html>

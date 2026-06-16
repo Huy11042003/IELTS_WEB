@@ -20,12 +20,6 @@
   </div>
 </div>
 
-<div class="selector-row">
-  <select id="testSelector">
-    <option value="">Select Test</option>
-  </select>
-</div>
-
 <div class="main">
   <!-- LEFT: PDF display for questions/text -->
   <div class="left-panel">
@@ -53,7 +47,6 @@
     var timerDisplay = document.getElementById('timer');
     var startBtn = document.getElementById('startButton');
     var submitBtn = document.getElementById('submitButton');
-    var selector = document.getElementById('testSelector');
     var pdfViewer = document.getElementById('pdfViewer');
     var audioPlayer = document.getElementById('audioPlayer');
     var questionArea = document.getElementById('questionArea');
@@ -64,7 +57,14 @@
     var pendingAudio = null;
     var pendingAudioUrl = null;
     var pendingTestId = null;
+    var params = new URLSearchParams(window.location.search);
 
+    var testId = params.get("test");
+    var selectedPart = params.get("part") || "full";
+
+    var currentTestInfo = null;
+
+    loadTest();
     // helper to fetch questions for a specific test
     function fetchQuestions(testId) {
       return fetch("listening/questions/" + encodeURIComponent(testId) + ".json")
@@ -100,7 +100,41 @@
         }
       }, 1000);
     }
+    function loadTest() {
 
+      if (!testId) {
+        alert("Missing test id");
+        return;
+      }
+
+      fetch("listening-list.json")
+        .then(res => res.json())
+        .then(data => {
+
+          var item = data.find(function(x) {
+            return x.id === testId;
+          });
+
+          if (!item) {
+            alert("Test not found");
+            return;
+          }
+
+          currentTestInfo = item;
+
+          pendingTestId = item.id;
+          pendingTimeLimit = item.timeLimit || 1800;
+          pendingAudio = item.audio || null;
+          pendingAudioUrl = item.audioUrl || null;
+
+          if (pdfViewer) {
+            pdfViewer.src =
+              "listening/pdf/" + item.file;
+          }
+
+          startBtn.disabled = false;
+        });
+    }
     if (startBtn) {
       startBtn.addEventListener('click', function () {
         // determine time limit from selector choice or fallback to 30 minutes
@@ -108,7 +142,31 @@
         startTimer(duration);
         // play audio if configured
         if (audioPlayer && (pendingAudioUrl || pendingAudio)) {
-          audioPlayer.src = pendingAudioUrl || ("listening/audio/" + pendingAudio);
+          audioPlayer.src =
+            pendingAudioUrl ||
+            ("listening/audio/" + pendingAudio);
+
+          audioPlayer.addEventListener(
+            "loadedmetadata",
+            function seekToPart() {
+
+              audioPlayer.removeEventListener(
+                "loadedmetadata",
+                seekToPart
+              );
+
+              if (
+                selectedPart !== "full" &&
+                currentTestInfo &&
+                currentTestInfo.parts &&
+                currentTestInfo.parts[selectedPart]
+              ) {
+                audioPlayer.currentTime =
+                  currentTestInfo.parts[selectedPart].start || 0;
+              }
+            }
+          );
+
           audioPlayer.play().catch(function(){});
           // prevent pausing by user
           audioPlayer.addEventListener('pause', function () {
@@ -118,6 +176,27 @@
         // load and render questions
         if (pendingTestId) {
           fetchQuestions(pendingTestId).then(testData => {
+
+            if (
+              selectedPart !== "full" &&
+              currentTestInfo &&
+              currentTestInfo.parts &&
+              currentTestInfo.parts[selectedPart]
+            ) {
+
+              var allowedQuestions =
+                currentTestInfo.parts[selectedPart].questions;
+
+              if (Array.isArray(allowedQuestions)) {
+
+                testData.questions =
+                  testData.questions.filter(function(q) {
+                    return allowedQuestions.includes(q.number);
+                  });
+
+              }
+            }
+
             renderQuestions(testData);
           });
         }
@@ -137,9 +216,11 @@
         try {
           localStorage.setItem('listening_lastTestId', pendingTestId);
           // store selected file for pdf viewer if available
-          var sel = selector && selector.options[selector.selectedIndex];
-          if (sel && sel.value) {
-            localStorage.setItem('listening_lastFile', sel.value);
+          if (currentTestInfo) {
+            localStorage.setItem(
+              'listening_lastFile',
+              currentTestInfo.file
+            );
           }
           // collect user answers
           var inputs = document.querySelectorAll('[name^="q"]');
@@ -164,9 +245,13 @@
           localStorage.setItem('listening_answers_' + pendingTestId, JSON.stringify(responses));
         } catch (e) {}
         // redirect to review
-        window.location.href = 'listening-review.html?test=' + encodeURIComponent(pendingTestId);
-      });
-    }
+        window.location.href =
+        'listening-review.html?test=' +
+        encodeURIComponent(pendingTestId) +
+        '&part=' +
+        encodeURIComponent(selectedPart);
+            });
+          }
 
     var closeBtn = document.getElementById('closeListening');
 
@@ -420,6 +505,7 @@
       return message;
     };
   })();
+  
 </script>
 
 </body>

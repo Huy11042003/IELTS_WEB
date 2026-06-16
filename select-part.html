@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Select Part</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+
+        .header {
+            background: #1976d2;
+            color: white;
+            padding: 16px 24px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,.08);
+        }
+
+        .test-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .test-id {
+            color: #666;
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        .part-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .part-item {
+            padding: 14px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .part-item:hover {
+            border-color: #1976d2;
+        }
+
+        .part-item.selected {
+            border-color: #1976d2;
+            background: #e3f2fd;
+        }
+
+        .actions {
+            margin-top: 24px;
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            padding: 12px 18px;
+            font-size: 15px;
+        }
+
+        .start-btn {
+            background: #1976d2;
+            color: white;
+        }
+
+        .back-btn {
+            background: #ddd;
+        }
+
+        .loading {
+            text-align: center;
+            margin-top: 60px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    IELTS Listening Practice
+</div>
+
+<div class="container">
+
+    <div id="content">
+        <div class="loading">Loading...</div>
+    </div>
+
+</div>
+
+<script>
+
+(function(){
+
+    function getQueryParam(name) {
+        const params =
+            new URLSearchParams(window.location.search);
+
+        return params.get(name);
+    }
+
+    const testId = getQueryParam("test");
+
+    let selectedPart = "full";
+    let currentTest = null;
+
+    function render() {
+
+        document.getElementById("content").innerHTML = `
+
+            <div class="card">
+
+                <div class="test-title">
+                    ${currentTest.title || currentTest.id}
+                </div>
+
+                <div class="test-id">
+                    ${currentTest.id}
+                </div>
+
+                <div class="section-title">
+                    Select Part
+                </div>
+
+                <div class="part-list">
+
+                    <div class="part-item selected"
+                         data-part="full">
+                        Full Test (1-40)
+                    </div>
+
+                    <div class="part-item"
+                         data-part="part1">
+                        Part 1 (Questions 1-10)
+                    </div>
+
+                    <div class="part-item"
+                         data-part="part2">
+                        Part 2 (Questions 11-20)
+                    </div>
+
+                    <div class="part-item"
+                         data-part="part3">
+                        Part 3 (Questions 21-30)
+                    </div>
+
+                    <div class="part-item"
+                         data-part="part4">
+                        Part 4 (Questions 31-40)
+                    </div>
+
+                </div>
+
+                <div class="actions">
+
+                    <button
+                        class="back-btn"
+                        onclick="window.location='select-test.html'">
+                        Back
+                    </button>
+
+                    <button
+                        id="startBtn"
+                        class="start-btn">
+                        Start
+                    </button>
+
+                </div>
+
+            </div>
+        `;
+
+        bindEvents();
+    }
+
+    function bindEvents() {
+
+        document
+            .querySelectorAll(".part-item")
+            .forEach(item => {
+
+                item.addEventListener("click", function() {
+
+                    document
+                        .querySelectorAll(".part-item")
+                        .forEach(x =>
+                            x.classList.remove("selected"));
+
+                    this.classList.add("selected");
+
+                    selectedPart =
+                        this.dataset.part;
+                });
+            });
+
+        document
+            .getElementById("startBtn")
+            .addEventListener("click", function() {
+
+                localStorage.setItem(
+                    "listening_selected_part",
+                    selectedPart
+                );
+
+                window.location.href =
+                    "listening.html?test=" +
+                    encodeURIComponent(testId) +
+                    "&part=" +
+                    encodeURIComponent(selectedPart);
+            });
+    }
+
+    if (!testId) {
+
+        document.getElementById("content")
+            .innerHTML =
+            "<div class='loading'>Test not found.</div>";
+
+        return;
+    }
+
+    fetch("listening-list.json")
+        .then(res => res.json())
+        .then(data => {
+
+            currentTest =
+                data.find(x => x.id === testId);
+
+            if (!currentTest) {
+
+                document.getElementById("content")
+                    .innerHTML =
+                    "<div class='loading'>Test not found.</div>";
+
+                return;
+            }
+
+            render();
+        })
+        .catch(() => {
+
+            document.getElementById("content")
+                .innerHTML =
+                "<div class='loading'>Unable to load test.</div>";
+        });
+
+})();
+</script>
+
+</body>
+</html>

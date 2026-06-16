@@ -120,6 +120,7 @@
     var reviewAudio = document.getElementById("reviewAudio");
     var originalPdfPath = null;
     var editedPdfPath = null;
+    var selectedPart = getQueryParam("part") || "full";
     
     function loadPdf() {
       if (lastFile) {
@@ -183,9 +184,65 @@
             reviewAudio.src = "listening/audio/" + item.audio;
           }
 
+          reviewAudio.addEventListener("loadedmetadata", function () {
+
+            if (
+              selectedPart !== "full" &&
+              item.parts &&
+              item.parts[selectedPart]
+            ) {
+              reviewAudio.currentTime =
+                item.parts[selectedPart].start || 0;
+            }
+
+          });
+
+          reviewAudio.addEventListener("timeupdate", function () {
+
+            if (
+              selectedPart !== "full" &&
+              item.parts &&
+              item.parts[selectedPart]
+            ) {
+
+              var endTime =
+                item.parts[selectedPart].end;
+
+              if (
+                endTime &&
+                reviewAudio.currentTime >= endTime
+              ) {
+                reviewAudio.pause();
+              }
+            }
+
+          });
+
         })
         .catch(function () {});
     }
+
+    reviewAudio.addEventListener("play", function () {
+
+      if (
+        selectedPart !== "full" &&
+        item.parts &&
+        item.parts[selectedPart]
+      ) {
+
+        var startTime =
+          item.parts[selectedPart].start || 0;
+
+        var endTime =
+          item.parts[selectedPart].end || 999999;
+
+        if (reviewAudio.currentTime >= endTime) {
+          reviewAudio.currentTime = startTime;
+        }
+      }
+
+    });
+    
     var speedControl = document.getElementById("playbackSpeed");
 
     if (speedControl) {
@@ -284,16 +341,53 @@
     }
 
     function loadAnswers() {
+
       if (!testId) {
-        document.getElementById("answersList").textContent = "Test ID not specified.";
+        document.getElementById("answersList").textContent =
+          "Test ID not specified.";
         return;
       }
-      fetch("listening/answers/" + encodeURIComponent(testId) + ".json")
-        .then(function (res) { return res.json(); })
-        .then(renderAnswers)
-        .catch(function () {
-          document.getElementById("answersList").textContent = "Unable to load answers.";
+
+      Promise.all([
+        fetch("listening/answers/" + encodeURIComponent(testId) + ".json")
+          .then(res => res.json()),
+
+        fetch("listening-list.json")
+          .then(res => res.json())
+      ])
+      .then(function([answerData, tests]) {
+
+        if (selectedPart === "full") {
+          renderAnswers(answerData);
+          return;
+        }
+
+        var testInfo = tests.find(function(x) {
+          return x.id === testId;
         });
+
+        if (
+          testInfo &&
+          testInfo.parts &&
+          testInfo.parts[selectedPart]
+        ) {
+
+          var allowedQuestions =
+            testInfo.parts[selectedPart].questions;
+
+          answerData.answers =
+            answerData.answers.filter(function(ans) {
+              return allowedQuestions.includes(ans.number);
+            });
+        }
+
+        renderAnswers(answerData);
+
+      })
+      .catch(function () {
+        document.getElementById("answersList").textContent =
+          "Unable to load answers.";
+      });
     }
 
     loadPdf();
