@@ -11,6 +11,18 @@
     { "number": 7, "acceptableAnswers": ["judo", "JUDO"] },
     { "number": 8, "acceptableAnswers": ["yoga", "YOGA"] },
     { "number": 9, "acceptableAnswers": ["intermediate", "INTERMEDIATE"] },
+    { "number": 10, "acceptableAnswers": ["8:30", "8.30"] },
+
+    { "number": 11, "acceptableAnswers": ["B"] },
+    { "number": 12, "acceptableAnswers": ["E"] },
+    { "number": 13, "acceptableAnswers": ["C"] },
+    { "number": 14, "acceptableAnswers": ["B"] },
+    { "number": 15, "acceptableAnswers": ["H"] },
+    { "number": 16, "acceptableAnswers": ["A"] },
+    { "number": 17, "acceptableAnswers": ["B"] },
+    { "number": 18, "acceptableAnswers": ["A"] },
+    { "number": 19, "acceptableAnswers": ["C"] },
+    { "number": 20, "acceptableAnswers": ["B"] },
 
     { "number": 21, "acceptableAnswers": ["C", "D"] },
     { "number": 22, "acceptableAnswers": ["D", "C"] },
