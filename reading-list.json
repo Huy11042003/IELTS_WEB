@@ -68,5 +68,61 @@
     "editedFile": "fc2.pdf",
     "title": "Forecast 2",
     "timeLimit": 3600
+  },
+  {
+    "id": "fc3",
+    "file": "fc3.pdf",
+    "editedFile": "fc3.pdf",
+    "title": "Forecast 3",
+    "timeLimit": 3600
+  },
+  {
+    "id": "fc4",
+    "file": "fc4.pdf",
+    "editedFile": "fc4.pdf",
+    "title": "Forecast 4",
+    "timeLimit": 3600
+  },
+  {
+    "id": "fc5",
+    "file": "fc5.pdf",
+    "editedFile": "fc5.pdf",
+    "title": "Forecast 5",
+    "timeLimit": 3600
+  },
+  {
+    "id": "fc6",
+    "file": "fc6.pdf",
+    "editedFile": "fc6.pdf",
+    "title": "Forecast 6",
+    "timeLimit": 3600
+  },
+  {
+    "id": "fc7",
+    "file": "fc7.pdf",
+    "editedFile": "fc7.pdf",
+    "title": "Forecast 7",
+    "timeLimit": 3600
+  },
+  {
+    "id": "fc8",
+    "file": "fc8.pdf",
+    "editedFile": "fc8.pdf",
+    "title": "Forecast 8",
+    "timeLimit": 3600
+  },
+  {
+    "id": "fc9",
+    "file": "fc9.pdf",
+    "editedFile": "fc9.pdf",
+    "title": "Forecast 9",
+    "timeLimit": 3600
+  },
+  {
+    "id": "fc10",
+    "file": "fc10.pdf",
+    "editedFile": "fc10.pdf",
+    "title": "Forecast 10",
+    "timeLimit": 3600
   }
 ]
