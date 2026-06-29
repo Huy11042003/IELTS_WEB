@@ -1,42 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>IELTS Practice</title>
+  <title>IELTS Reading Practice</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="header">
   <div class="header-left-group">
     <div class="header-title">📖 IELTS Reading Test</div>
   </div>
+
   <div class="header-center-group">
-    <button id="startButton" class="start-button" disabled>Start test</button>
+    <button id="startButton" class="start-button" disabled>
+      Start test
+    </button>
   </div>
+
   <div class="header-right-group">
-    <button id="submitButton" class="submit-button" disabled>Submit</button>
+    <button id="submitButton" class="submit-button" disabled>
+      Submit
+    </button>
     <div class="timer" id="timer">--:--</div>
     <a href="index.html" class="header-close" id="closeReading">✕</a>
   </div>
 </div>
 
-<!-- SELECTOR ROW -->
-<div class="selector-row">
-  <select id="pdfSelector">
-    <option value="">Select Test</option>
-  </select>
-</div>
-
-<!-- MAIN -->
 <div class="main">
 
-  <!-- LEFT: PDF -->
   <div class="left-panel">
     <iframe id="pdfViewer"></iframe>
   </div>
 
-  <!-- RIGHT: QUESTIONS -->
   <div class="right-panel">
     <div class="instruction-box">
       Questions panel
@@ -50,11 +45,23 @@
 <div class="footer-nav" id="questionNav"></div>
 
 <script>
+  window.READING_TEST_ID =
+    new URLSearchParams(window.location.search).get("test");
+
+  if (!window.READING_TEST_ID) {
+    alert("Test not found.");
+    window.location.href = "select-test.html";
+  }
+
   (function () {
-    var closeBtn = document.getElementById('closeReading');
+    var closeBtn = document.getElementById("closeReading");
+
     if (closeBtn) {
-      closeBtn.addEventListener('click', function (e) {
-        var leave = confirm('Are you sure you want to leave this test? Your answers and time will be lost.');
+      closeBtn.addEventListener("click", function (e) {
+        var leave = confirm(
+          "Are you sure you want to leave this test? Your answers and time will be lost."
+        );
+
         if (!leave) {
           e.preventDefault();
         }
@@ -62,11 +69,15 @@
     }
 
     window.onbeforeunload = function (e) {
-      var message = 'Are you sure you want to leave this test? Your answers and time will be lost.';
+      var message =
+        "Are you sure you want to leave this test? Your answers and time will be lost.";
+
       e = e || window.event;
+
       if (e) {
         e.returnValue = message;
       }
+
       return message;
     };
   })();
@@ -75,4 +86,3 @@
 <script src="script.js"></script>
 </body>
 </html>
-

@@ -1,7 +1,7 @@
 let timerInterval;
 let timeRemaining = 0;
 
-const selector = document.getElementById("pdfSelector");
+const selector = document.getElementById("pdfSelector") || null;
 const pdfViewer = document.getElementById("pdfViewer");
 const timerDisplay = document.getElementById("timer");
 const questionArea = document.getElementById("questionArea");
@@ -13,54 +13,38 @@ let pendingTimeLimit = 0;
 let pendingTestId = null;
 let pendingFile = null;
 
-/* Load available PDFs */
+/* Auto load test from URL */
+const urlParams = new URLSearchParams(window.location.search);
+const testIdFromUrl = urlParams.get("test");
+
+if (!testIdFromUrl) {
+  alert("Test not found");
+  window.location.href = "select-test.html";
+}
+
 fetch("reading-list.json")
   .then(res => res.json())
   .then(data => {
-    data.forEach(item => {
-      const option = document.createElement("option");
-      option.value = item.file;
-      option.textContent = item.title;
-      option.dataset.time = item.timeLimit;
-      option.dataset.testId = item.id || item.file.replace(".pdf", "");
-      selector.appendChild(option);
-    });
+
+    const selectedTest =
+      data.find(x => x.id === testIdFromUrl);
+
+    if (!selectedTest) {
+      alert("Test not found");
+      return;
+    }
+
+    pendingTimeLimit = selectedTest.timeLimit;
+    pendingTestId = selectedTest.id;
+    pendingFile = selectedTest.file;
+
+    pdfViewer.src =
+      "reading/pdf/" + selectedTest.file;
+
+    if (startButton) {
+      startButton.disabled = false;
+    }
   });
-
-
-// helper to fetch questions for a specific test
-function fetchQuestions(testId) {
-  // assumes files stored under reading/questions/<testId>.json
-  return fetch("reading/questions/" + encodeURIComponent(testId) + ".json")
-    .then(res => {
-      if (!res.ok) throw new Error("no question file");
-      return res.json();
-    })
-    .catch(() => null);
-}
-
-/* When user selects a test */
-selector.addEventListener("change", function () {
-  const selectedFile = this.value;
-
-  if (!selectedFile) return;
-
-  // Load PDF from reading/pdf folder
-  pdfViewer.src = "reading/pdf/" + selectedFile;
-
-  // Get time limit from JSON
-  const selectedOption = this.options[this.selectedIndex];
-  const timeLimit = parseInt(selectedOption.dataset.time, 10);
-  const testId = selectedOption.dataset.testId;
-
-  pendingTimeLimit = timeLimit;
-  pendingTestId = testId;
-  pendingFile = selectedFile;
-
-  if (startButton) {
-    startButton.disabled = false;
-  }
-});
 
 /* Start button */
 if (startButton) {
@@ -160,7 +144,34 @@ var QUESTION_TYPE_LABELS = {
   "true-false-not-given": "True / False / Not Given",
   "yes-no-not-given": "Yes / No / Not Given"
 };
+function fetchQuestions(testId) {
+  return fetch("reading/questions/" + testId + ".json")
+    .then(function (res) {
+      if (!res.ok) {
+        throw new Error("Cannot load questions: " + testId);
+      }
+      return res.json();
+    })
+    .then(function (data) {
+      // Nếu file JSON là array trực tiếp
+      if (Array.isArray(data)) {
+        return {
+          id: testId,
+          questions: data
+        };
+      }
 
+      // Nếu file JSON có dạng { questions: [...] }
+      return data;
+    })
+    .catch(function (err) {
+      console.error(err);
+      return {
+        id: testId,
+        questions: []
+      };
+    });
+}
 function renderQuestions(test) {
   questionArea.innerHTML = "Loading questions...";
   questionNav.innerHTML = "";
